@@ -6,6 +6,7 @@ mkdir -p /home/scan
 if [[ -e /home/scan/lw.hdb ]]; then #rules installed, run update
 	git pull /home/scan/
 else git clone https://github.com/Hestat/lw-yara.git
+fi
 	
 #creating log file
 OP1=/home/scan/scan-$(date +"%F-%T".txt)
