@@ -1,8 +1,9 @@
 #!/bin/bash
 
-
+#making log location
+mkdir -p /home/scan
 #creating log file
-OP1=/home/temp/scan-$(date +"%F-%T".txt)
+OP1=/home/scan/scan-$(date +"%F-%T".txt)
 
 echo -e "\n"|tee -a $OP1 
 
