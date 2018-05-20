@@ -3,9 +3,13 @@
 #making log location
 mkdir -p /home/scan
 
+#set sigdir
+sigdir=/home/scan/lw-yara
+
 if [[ -e /home/scan/lw.hdb ]]; then #rules installed, run update
-	git pull /home/scan/
-else git pull https://github.com/Hestat/lw-yara.git /home/scan/
+	cd $sigdir
+	git pull
+else git clone https://github.com/Hestat/lw-yara.git $sigdir
 fi
 	
 #creating log file
