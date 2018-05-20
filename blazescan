@@ -10,7 +10,7 @@ if [[ -x $(which clamscan) ]]; then #clamav installed
 	else echo -e "trying to link to existing clamscan binary"
 		ln -s /usr/local/cpanel/3rdparty/bin/clamscan /usr/bin/clamscan 
 		ln -s /usr/local/cpanel/3rdparty/bin/freshclam /usr/bin/freshclam
-		if [[ -x $(which clamscan)]] then 
+		if [[ -x $(which clamscan) ]]; then 
 			echo -e "success, please restart to scan"
 			else echo -e "clamav not installed please install"
 		fi
