@@ -6,7 +6,7 @@ mkdir -p /home/scan
 #set sigdir
 sigdir=/home/scan/lw-yara
 
-if [[ -e /home/scan/lw.hdb ]]; then #rules installed, run update
+if [[ -e /home/scan/lw-yara/lw.hdb ]]; then #rules installed, run update
 	cd $sigdir
 	git pull
 else git clone https://github.com/Hestat/lw-yara.git $sigdir
