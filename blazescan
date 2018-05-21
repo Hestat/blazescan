@@ -27,7 +27,7 @@ header(){
 
 header2=$(echo -e "$(div 3)")
 
-title=$(
+title()={
 echo -e "                      __________________\n"
 echo -e "                      \                 \ \n"
 echo -e "                       \                 \ \n"
@@ -46,8 +46,7 @@ echo -e "|--------------         |  Scanner  |        |\n"
 echo -e "|                       ------------|        |\n"
 echo -e "----------------------------------------------\n" 
 echo -e "Sometimes you need to burn it down and start fresh"
-
-)
+}
 
 #creating log file
 OP1=/home/scan/scan-$(date +%F-%H%M.txt)
