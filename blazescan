@@ -66,6 +66,7 @@ case "$answer" in
 	3) exit;;
 	esac
 	echo -e "Press Enter to return to menu"
+	read input
 done
 else
 	echo -e "not cpanel, exiting"
