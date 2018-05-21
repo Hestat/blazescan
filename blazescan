@@ -67,9 +67,7 @@ case "$answer" in
 		echo -e "\n"|tee -a $OP2
 		echo; read -p "What is the cpanel user?"
 		user
-		clamscan -ir --no-summary -d /root/lw-yara/lw.hdb -d /root/lw-yara/lw-rules_index.yar /hom*/$user/public_html/ | tee -a $OP2; echo -e "\n" | tee -a $OP2 ; done; echo -e "Scan output file can be found here: $OP2"
-
-		;;
+		clamscan -ir --no-summary -d /root/lw-yara/lw.hdb -d /root/lw-yara/lw-rules_index.yar /hom*/$user/public_html/ | tee -a $OP2; echo -e "\n" | tee -a $OP2 ; done; echo -e "Scan output file can be found here: $OP2"; done;;
 
 	3) exit;;
 	esac
