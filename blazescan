@@ -40,13 +40,10 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 		clear
 		header
 		echo -e
-		echo -e "Please select scan you would like to run"
-		echo -e
-		echo -e "Select 1 to scan all Cpanel accounts and Docroots"
-		echo -e 
+		echo -e "Please select scan you would like to run\n"
+		echo -e "Select 1 to scan all Cpanel accounts and Docroots\n"
 		echo -e "Select 2 to scan individual account\n"
-		echo -e 
-		echo -e "Select 3 to exit"
+		echo -e "Select 3 to exit\n"
 		header
 read answer
 case "$answer" in
