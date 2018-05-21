@@ -17,7 +17,7 @@ else git clone https://github.com/Hestat/lw-yara.git $sigdir
 fi
 	
 #creating log file
-OP1=/home/scan/scan-$(date + %F-%H%M.txt)
+OP1=/home/scan/scan-$(date +%F-%H%M.txt)
 
 echo -e "\n"|tee -a $OP1 
 
