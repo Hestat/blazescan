@@ -15,6 +15,17 @@ if [[ -e /home/scan/lw-yara/lw.hdb ]]; then #rules installed, run update
 	git pull
 else git clone https://github.com/Hestat/lw-yara.git $sigdir
 fi
+
+#create formatting
+div(){
+  for ((i=0;i<$1;i++)); do printf '='; done;
+}
+
+header(){
+	echo -e "\n$(div 40)\n"
+}
+
+header2=$(echo -e "$(div 3)")
 	
 #creating log file
 OP1=/home/scan/scan-$(date +%F-%H%M.txt)
@@ -23,7 +34,23 @@ echo -e "\n"|tee -a $OP1
 
 if [[ -x $(which whmapi1) ]]; then #cpanel
 
-	if [[ -x $(which clamscan) ]]; then #clamav installed
+	#begin menu for cpanel options
+	while true
+	do
+		clear
+		header
+		echo -e
+		echo -e "Please select scan you would like to run"
+		echo -e
+		echo -e "Select 1 to scan all Cpanel accounts and Docroots"
+		echo -e 
+		echo -e "Select2 to scan individual account\n"
+		header
+read answer
+case "$answer" in
+
+	
+	1) if [[ -x $(which clamscan) ]]; then #clamav installed
 		for FILE in $(find /var/cpanel/userdata/ -type f | xargs grep documentroot | awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | awk -F":" '{print $3}'); do echo -e "Scan location:\t$FILE\n" | tee -a $OP1 
 		clamscan -ir --no-summary -d /root/lw-yara/lw.hdb -d /root/lw-yara/lw-rules_index.yar $FILE | tee -a $OP1; echo -e "\n" | tee -a $OP1 ; done; echo -e "Scan output file can be found here: $OP1"
 	else echo -e "trying to link to existing clamscan binary"
@@ -34,6 +61,10 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 			else echo -e "clamav not installed please install"
 		fi
 	fi
+	2) echo -e "not ready yet"
+	esac
+	echo -e "Press Enter to return to menu"
+done
 else
 	echo -e "not cpanel, exiting"
 fi
