@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #making log location
-if [[ -e /home/scan ]]; #then pwd exists
+if [[ -e /home/scan ]];then #then pwd exists
 	echo -e 
 else
 mkdir -p /home/scan
