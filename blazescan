@@ -64,7 +64,7 @@ case "$answer" in
 	2) #creating log file
 		OP2=/home/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP2
-		echo; "What is the cpanel user?"
+		echo "What is the cpanel user?"
 		read user
 		clamscan -ir --no-summary -d /root/lw-yara/lw.hdb -d /root/lw-yara/lw-rules_index.yar /hom*/$user/public_html/ | tee -a $OP2
 	       	echo -e "Scan output file can be found here: $OP2";;
