@@ -61,7 +61,7 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 	do
 		clear
 		header
-		title
+		echo -e $title
 		echo -e
 		echo -e "Please select scan you would like to run\n"
 		echo -e "Select 1 to scan all Cpanel accounts and Docroots\n"
