@@ -22,7 +22,7 @@ div(){
 }
 
 header(){
-	echo -e "\n$(div 40)\n"
+	echo -e "\n$(div 80)\n"
 }
 
 header2=$(echo -e "$(div 3)")
