@@ -22,7 +22,7 @@ div(){
 }
 
 header(){
-	echo -e "\n$(div 80)\n"
+	echo -e "\n$(div 40)\n"
 }
 
 header2=$(echo -e "$(div 3)")
@@ -60,7 +60,7 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 	do
 		clear
 		header
-		title
+		#title
 		echo -e
 		echo -e "Please select scan you would like to run\n"
 		echo -e "Select 1 to scan all Cpanel accounts and Docroots\n"
