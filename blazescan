@@ -26,7 +26,29 @@ header(){
 }
 
 header2=$(echo -e "$(div 3)")
-	
+
+title=$(cat <<EOF
+                      __________________
+                      \                 \
+                        \                 \
+                          \            )   \
+                            \         ).(   \
+           /-------------------------).(.(----
+         //---------------//   (     ).(./    |
+       //               //    (.)   ).(./   __|
+     //               //   ) .( .( ).))//    ||
+   //               // ).( .( .) .(.).//     ||
+ //_______________//  ^^^^^^^^^^^^^^^//      ||
+------------------------------------/ ------- |
+| Blazescan   |         |  Another  |         |     
+| AMS Software|         |  Malware  |         |     
+|--------------         |  Scanner  |         |      
+|                       ------------|         |    
+-----------------------------------------------      
+Sometimes you need to burn it down and start fresh
+EOF
+)
+
 #creating log file
 OP1=/home/scan/scan-$(date +%F-%H%M.txt)
 
@@ -39,6 +61,7 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 	do
 		clear
 		header
+		title
 		echo -e
 		echo -e "Please select scan you would like to run\n"
 		echo -e "Select 1 to scan all Cpanel accounts and Docroots\n"
