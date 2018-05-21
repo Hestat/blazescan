@@ -27,7 +27,7 @@ header(){
 
 header2=$(echo -e "$(div 3)")
 
-title()={
+title(){
 echo -e "                      __________________\n"
 echo -e "                      \                 \ \n"
 echo -e "                       \                 \ \n"
