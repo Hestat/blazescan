@@ -60,8 +60,8 @@ case "$answer" in
 			echo -e "success, please restart to scan"
 			else echo -e "clamav not installed please install"
 		fi
-	fi
-	2) echo -e "not ready yet"
+	fi;;
+	2) echo -e "not ready yet";;
 	esac
 	echo -e "Press Enter to return to menu"
 done
