@@ -10,7 +10,7 @@ use the included install.sh, will put things in /usr/local/scan
 
 simply start with 
 
- ````blazescan```
+ ```blazescan```
 
 The menu currently provides 2 scanning modes.
 
