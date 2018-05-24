@@ -19,7 +19,7 @@ fi
 if [[ -x maldet ]]; then #maldet installed adding maldet sigs
 	sigdir2=/usr/local/maldetect/sigs
 else
-	#not installed
+	echo -e #not installed
 fi
 
 #create formatting
