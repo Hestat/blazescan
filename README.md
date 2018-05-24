@@ -4,10 +4,10 @@ Blazescan is a malware scanning tool, currently configured for Cpanel servers. t
 
 # install
 
-	```git clone https://github.com/Hestat/blazescan.git```
-	```cd blazescan```
-	```./install.sh```
-	```blazescan```
+	git clone https://github.com/Hestat/blazescan.git
+	cd blazescan
+	./install.sh
+	
 
 # using
 
