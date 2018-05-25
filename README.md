@@ -1,6 +1,6 @@
 # blazescan
 
-Blazescan is a malware scanning tool, currently configured for Cpanel servers. there has been a dirth of updated scanners recently, and updating them would be the best longtermsolution, but until then, or if they do not get updated, we will have this.
+Blazescan is a malware scanning tool, currently configured for Cpanel servers. there has been a dearth of updated scanners recently, and updating them would be the best long term solution, but until then, or if they do not get updated, we will have this.
 
 # install
 
