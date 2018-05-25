@@ -23,7 +23,7 @@ else
 	echo -e #not installed
 fi
 
-#create formatting
+######################   create formatting #################################
 div(){
   for ((i=0;i<$1;i++)); do printf '='; done;
 }
