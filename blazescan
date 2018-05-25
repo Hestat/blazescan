@@ -135,7 +135,7 @@ case "$answer" in
 		echo -e "\n"|tee -a $OP2
 		if [[ -x $(which maldet) ]];then 
 			echo -e "maldet detected, using maldet and lw-yara signatures"
-			if [[ $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | wc -l) -eq "1 "]]; then 
+			if [[ $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | wc -l) -eq "1" ]]; then 
                        			singlecpanelscan2a
                        	else
                        			singlecpanelscan2b
