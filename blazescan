@@ -68,7 +68,7 @@ cpanelallscan2(){
 		clamscan -ir -d /usr/local/maldetect/sigs -d /usr/local/scan/lw-yara/lw.hdb -d /usr/local/scan/lw-yara/lw-rules_index.yar $FILE | tee -a $OP1; echo -e "\n" | tee -a $OP1 ; done; echo -e "Scan output file can be found here: $OP1"
 }
 
-singlecpanelscan(){
+singlecpanelscan1(){
 		for FILE2 in $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | awk -F":" '{print $2}'); do echo -e "Scan location:\t$FILE2\n" | tee -a $OP2 
 		clamscan -ir -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $FILE2 | tee -a $OP2; echo -e "\n" | tee -a $OP2;done; echo -e "Scan output file can be found here: $OP2"
 }
