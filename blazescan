@@ -93,7 +93,7 @@ case "$answer" in
 		#creating log file
 		OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP1
-		if [[ -x maldet ]]; then 
+		if [[ -x $(which maldet) ]]; then 
 			echo -e "maldet detected, using maldet and lw-yara signatures"
 			cpanelallscan2
 		else
