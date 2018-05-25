@@ -93,9 +93,11 @@ case "$answer" in
 		#creating log file
 		OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP1
-		if [[ -x maldet ]]; then
+		if [[ -x maldet ]]; then 
+			echo -e "maldet detected, using maldet and lw-yara signatures"
 			cpanelallscan2
 		else
+			echo -e "using only lw-yara signatures"
 			cpanelallscan1
 		fi
 	else echo -e "trying to link to existing clamscan binary"
