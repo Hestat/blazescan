@@ -20,7 +20,7 @@ if [[ -e /usr/local/scan/lw-yara/lw.hdb ]]; then #rules installed, run update
 else git clone https://github.com/Hestat/lw-yara.git $sigdir
 fi
 
-yesno; if [ $decision = 1 ]; then 
+yesno if [ $decision = 1 ]; then 
 	pushd /usr/local/src/
 	rm -vrf /usr/local/src/maldetect-*
 	rm -vrf /usr/local/src/linux-malware-detect*
