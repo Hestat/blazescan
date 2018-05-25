@@ -51,6 +51,7 @@ yesno; if [ $decision = 1 ]; then
 	fi
 	popd
 else #continue
+fi
 
 if [[ -x $(which maldet) ]]; then #maldet installed adding maldet sigs
 	sigdir2=/usr/local/maldetect/sigs
