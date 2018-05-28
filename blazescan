@@ -91,6 +91,16 @@ echo -e "----------------------------------------------"
 echo -e "Sometimes you need to burn it down and start fresh"
 }
 
+#########################   help menu   #####################################
+
+helpmenu(){
+	echo -e "Blazescan is a malware scanning tool that uses clamav and custom malware databases\n"
+	echo -e "If you run blazescan without and arguments it will present a simple scanning menu\n"
+	echo -e "-a will scan all cpanel accounts\n"
+	echo -e "-u will scan all scan the specified cpanel user\n"
+	echo -e "-h will display this help menu\n"
+}
+
 ###########################   scan functions    ################################
 
 cpanelallscan1(){
@@ -127,10 +137,11 @@ singlecpanelscan2b(){
 
 while getopts ":ahu:" opt; do
   case ${opt} in
-    h ) # process option h
+    h ) # process option h to display help menu
+	    helpmenu
 	    exit 0
       ;;
-    u ) # process option u
+    u ) # process option u for individual cpanel account
 	    user=$OPTARG
 		OP2=/usr/local/scan/$user-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP2
@@ -150,7 +161,8 @@ while getopts ":ahu:" opt; do
 				fi
 			fi
 			exit 0;;
-	a ) if [[ -x $(which maldet) ]]; then 
+	a ) # -a option to scan all cpanel accounts
+		if [[ -x $(which maldet) ]]; then 
 			echo -e "maldet detected, using maldet and lw-yara signatures"
 			cpanelallscan2
 		else
@@ -159,7 +171,7 @@ while getopts ":ahu:" opt; do
 		fi
 		exit 0;;
 
-    \? ) echo "Usage: cmd [-h] [-t]"
+    \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account]"
       ;;
   esac
 done
