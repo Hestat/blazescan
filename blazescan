@@ -147,7 +147,7 @@ singlecpanelscan2b(){
 
 unset -v latest
 for file in "$scandir"/*; do
-  [[ $file -nt $latest ]] && latest=$file
+  [[ $file -ot $latest ]] && latest=$file
 done
 
 list(){
