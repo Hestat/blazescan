@@ -218,6 +218,8 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 	do
 		clear
 		header
+		helpmenu
+		echo -e "\n\n\n"
 		#title
 		echo -e
 		echo -e "Please select scan you would like to run\n"
@@ -225,7 +227,6 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 		echo -e "Select 2 to scan individual account\n"
 		echo -e "Select 3 to exit\n"
 		echo -e "Blazescan can also be run with flags\n"
-		helpmenu
 		header
 read answer
 case "$answer" in
