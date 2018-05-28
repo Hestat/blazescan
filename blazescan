@@ -196,7 +196,9 @@ for file in /usr/local/scan/ /*; do
   [[ $file -nt $latest ]] && latest=$file
 done
 
-list(){grep UNOFFICIAL $file}
+list(){
+	grep UNOFFICIAL $file
+}
 
 #############################   begin main   ##################################
 
