@@ -152,7 +152,7 @@ list(){
 }
 
 timestamps(){
-	grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | stat -t --format=%z drupal-check.sh | awk '{print$1" " $2}'
+	grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | xargs stat -t --format=%z | awk '{print$1" " $2}'
 }
 ############################# flags for running ###############################
 
