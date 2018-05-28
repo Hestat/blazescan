@@ -29,6 +29,7 @@ If you run blazescan without any arguments it will present a simple scanning men
   -t will display ctime of the hits in the last scan
 
   -d scan a directory of your choosing
+
   -h will display the help menu
 
 By default the scanner will use the rules at https://github.com/Hestat/lw-yara
