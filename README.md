@@ -15,19 +15,29 @@ simply start with
 
  ```blazescan```
 
-The menu currently provides 2 scanning modes.
 
-1. scan all cpanel doc roots, will enumerate and scan all doc roots on the server
+Blazescan is a malware scanning tool that uses clamav and custom malware databases
 
-2. scan a specific cpanel account, provide the cpanel user and it will scan for the one user
+If you run blazescan without any arguments it will present a simple scanning menu
 
-3. exit
+  -a will scan all cpanel accounts
+
+  -u will scan the specified cpanel user
+
+  -l will show the results of the last scan
+
+  -t will display ctime of the hits in the last scan
+
+  -d scan a directory of your choosing
+  -h will display the help menu
+
+By default the scanner will use the rules at https://github.com/Hestat/lw-yara
+
+It will also use the maldet rules if installed http://www.rfxn.com/projects/linux-malware-detect/
+
 
 
 # definitions
 
-is built to use the following malware database
 
-https://github.com/Hestat/lw-yara
-
-runs using clamav as the scanning engine, will need to be installed to function properly.
+runs using clamav as the scanning engine, will need to be installed and at least version 98+ to function properly.
