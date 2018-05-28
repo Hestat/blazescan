@@ -125,7 +125,7 @@ singlecpanelscan2b(){
 }
 ############################# flags for running ###############################
 
-while getopts ":ahu" opt; do
+while getopts ":ahu:" opt; do
   case ${opt} in
     h ) # process option a
       ;;
