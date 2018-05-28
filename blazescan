@@ -146,7 +146,7 @@ singlecpanelscan2b(){
 #############################  time stamps and other things ###################
 
 unset -v latest
-for file in $scandir /*; do
+for file in $scandir/*; do
   [[ $file -nt $latest ]] && latest=$file
 done
 
