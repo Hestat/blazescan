@@ -142,7 +142,7 @@ singlecpanelscan2b(){
 }
 ############################# flags for running ###############################
 
-while getopts ":ahu:" opt; do
+while getopts ":ahlu:" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -169,6 +169,9 @@ while getopts ":ahu:" opt; do
 			fi
 			exit 0;;
 	a ) # -a option to scan all cpanel accounts
+		#creating log file
+		OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
+		echo -e "\n"|tee -a $OP1
 		if [[ -x $(which maldet) ]]; then 
 			echo -e "maldet detected, using maldet and lw-yara signatures"
 			cpanelallscan2
@@ -178,12 +181,22 @@ while getopts ":ahu:" opt; do
 		fi
 		exit 0;;
 
+	l ) list
+		exit 0;;
+
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account]"
       ;;
   esac
 done
 
+#############################  time stamps and other things ###################
 
+unset -v latest
+for file in /usr/local/scan/ /*; do
+  [[ $file -nt $latest ]] && latest=$file
+done
+
+list(){grep UNOFFICIAL $file}
 
 #############################   begin main   ##################################
 
