@@ -56,7 +56,9 @@ if [[ -x $(which maldet) ]]; then #maldet installed adding maldet sigs
 	fi
 	popd
 else #continue
+	echo -e
 fi
+
 ###########################################################################################33
 if [[ -x $(which maldet) ]]; then #maldet installed adding maldet sigs
 	sigdir2=/usr/local/maldetect/sigs
