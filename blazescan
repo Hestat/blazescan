@@ -20,6 +20,8 @@ if [[ -e /usr/local/scan/lw-yara/lw.hdb ]]; then #rules installed, run update
 else git clone https://github.com/Hestat/lw-yara.git $sigdir
 fi
 
+scandir=/usr/local/scan
+
 ########################## install maldet if not installed ################################
 #
 #if [[ -x $(which maldet) ]]; then #maldet installed adding maldet sigs
@@ -144,7 +146,7 @@ singlecpanelscan2b(){
 #############################  time stamps and other things ###################
 
 unset -v latest
-for file in /usr/local/scan/ /*; do
+for file in $scandir /*; do
   [[ $file -nt $latest ]] && latest=$file
 done
 
