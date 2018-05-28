@@ -149,6 +149,13 @@ singlecpanelscan2b(){
                 clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $FILE2 | tee -a $OP2; echo -e "\n" | tee -a $OP2;done; echo -e "Scan output file can be found here: $OP2"
 }
 
+directoryscanM(){
+ 	clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3;done; echo -e "Scan output file can be found here: $OP3"
+}
+
+directoryscan(){
+ 	clamscan -ir --no-summary -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3;done; echo -e "Scan output file can be found here: $OP3"
+}
 #############################  time stamps and other things ###################
 
 list(){
@@ -160,7 +167,7 @@ timestamps(){
 }
 ############################# flags for running ###############################
 
-while getopts ":ahltu:" opt; do
+while getopts ":ahltu:d:" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -202,6 +209,19 @@ while getopts ":ahltu:" opt; do
 	l ) list
 		exit 0;;
 	t ) timestamps
+		exit 0;;
+	d ) #scan specified directory
+		direct=$OPTARG
+		#creating log file
+		OP3=/usr/local/scan/scan-$(date +%F-%H%M.txt)
+		echo -e "\n"|tee -a $OP3
+		if [[ -x $(which maldet) ]];then
+			echo -e "maldet detected, using maldet and lw-yara signatures"
+			directoryscanM
+		else
+			echo -e "using only lw-yara signatures"
+			directoryscan
+		fi
 		exit 0;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
