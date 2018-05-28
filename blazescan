@@ -145,13 +145,8 @@ singlecpanelscan2b(){
 
 #############################  time stamps and other things ###################
 
-unset -v latest
-for file in "$scandir"/*; do
-  [[ $file -ot $latest ]] && latest=$file
-done
-
 list(){
-	grep UNOFFICIAL $file
+	grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}')
 }
 ############################# flags for running ###############################
 
