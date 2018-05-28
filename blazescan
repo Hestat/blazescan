@@ -127,7 +127,8 @@ singlecpanelscan2b(){
 
 while getopts ":ahu:" opt; do
   case ${opt} in
-    h ) # process option a
+    h ) # process option h
+	    exit 0
       ;;
     u ) # process option u
 	    user=$OPTARG
@@ -147,14 +148,16 @@ while getopts ":ahu:" opt; do
                        	else
                        			singlecpanelscan1b
 				fi
-			fi;;
+			fi
+			exit 0;;
 	a ) if [[ -x $(which maldet) ]]; then 
 			echo -e "maldet detected, using maldet and lw-yara signatures"
 			cpanelallscan2
 		else
 			echo -e "using only lw-yara signatures"
 			cpanelallscan1
-		fi;;
+		fi
+		exit 0;;
 
     \? ) echo "Usage: cmd [-h] [-t]"
       ;;
