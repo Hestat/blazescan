@@ -130,7 +130,7 @@ while getopts ":hu" opt; do
     h ) # process option a
       ;;
     u ) # process option u
-	    read user
+	    user=${OPTARG}
 		OP2=/usr/local/scan/$user-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP2
 		if [[ -x $(which maldet) ]];then 
