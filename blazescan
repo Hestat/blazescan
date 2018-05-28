@@ -17,7 +17,9 @@ sigdir=/usr/local/scan/lw-yara
 if [[ -e /usr/local/scan/lw-yara/lw.hdb ]]; then #rules installed, run update
 	cd $sigdir
 	git pull
+	echo -e
 else git clone https://github.com/Hestat/lw-yara.git $sigdir
+	echo -e
 fi
 
 scandir=/usr/local/scan
@@ -110,6 +112,8 @@ helpmenu(){
 	echo -e "-l will show the results of the last scan\n"
 	echo -e "-t will display ctime of the hits in tehe last scan\n"
 	echo -e "-h will display this help menu\n"
+	echo -e "By default the scanner will use the rules at https://github.com/Hestat/lw-yara"
+	echo -e "It will also use the maldet rules if installed http://www.rfxn.com/projects/linux-malware-detect/"
 }
 
 ###########################   scan functions    ################################
