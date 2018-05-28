@@ -18,19 +18,19 @@ simply start with
 
 Blazescan is a malware scanning tool that uses clamav and custom malware databases
 
-If you run blazescan without any arguments it will present a simple scanning menu
+	If you run blazescan without any arguments it will present a simple scanning menu
 
-  -a will scan all cpanel accounts
+	  -a will scan all cpanel accounts
 
-  -u will scan the specified cpanel user
+	  -u will scan the specified cpanel user
 
-  -l will show the results of the last scan
+	  -l will show the results of the last scan
 
-  -t will display ctime of the hits in the last scan
+	  -t will display ctime of the hits in the last scan
 
-  -d scan a directory of your choosing
+	  -d scan a directory of your choosing
 
-  -h will display the help menu
+	  -h will display the help menu
 
 By default the scanner will use the rules at https://github.com/Hestat/lw-yara
 
