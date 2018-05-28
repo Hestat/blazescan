@@ -20,39 +20,43 @@ if [[ -e /usr/local/scan/lw-yara/lw.hdb ]]; then #rules installed, run update
 else git clone https://github.com/Hestat/lw-yara.git $sigdir
 fi
 
-#yesno if [ $decision = 1 ]; then 
-#	pushd /usr/local/src/
-#	rm -vrf /usr/local/src/maldetect-*
-#	rm -vrf /usr/local/src/linux-malware-detect*
-#	wget http://www.rfxn.com/downloads/maldetect-current.tar.gz
-#	tar -zxvf maldetect-current.tar.gz
-#	cd maldetect-*
-#	sh ./install.sh
-#	maldet --update-ver
-#	#sed patch - commands added to address current problem with maldet overriding values in the conf file
-#	sed -i 's/quarantine_hits=\"1\"/quarantine_hits=\"0\"/' /usr/local/maldetect/conf.maldet
-#	sed -i 's/quarantine_clean=\"1\"/quarantine_clean=\"0\"/' /usr/local/maldetect/conf.maldet
-#	sed -i 's/email_alert=\"1\"/email_alert=\"0\"/' /usr/local/maldetect/conf.maldet
-#	sed -i 's/email_addr=\"you@domain.com\"/email_addr=\"\"/' /usr/local/maldetect/conf.maldet
-	#end sed patch
-#	maldet --update
-#	if [ -e /usr/local/cpanel/3rdparty/bin/clamscan ]
-#	then
-#	ln -s /usr/local/cpanel/3rdparty/bin/clamscan /usr/bin/clamscan 
-#	ln -s /usr/local/cpanel/3rdparty/bin/freshclam /usr/bin/freshclam
-#	if [ ! -d /var/lib/clamav ]
-#	then mkdir /var/lib/clamav
-#	fi
-#	ln -s /usr/local/cpanel/3rdparty/share/clamav/main.cld /var/lib/clamav/main.cld
-#	ln -s /usr/local/cpanel/3rdparty/share/clamav/daily.cld /var/lib/clamav/daily.cld
-#	ln -s /usr/local/cpanel/3rdparty/share/clamav/bytecode.cld /var/lib/clamav/bytecode.cld 
-#	else
-#	echo -e "\n\e[31mClamAV does not appear to be installed through cPanel.\nThe ClamAV definitions will not be used.\e[39m\n"
-#	fi
-#	popd
-#else #continue
-#fi
+########################## install maldet if not installed ################################
 
+if [[ -x $(which maldet) ]]; then #maldet installed adding maldet sigs
+	echo -e "Maldet is not installed would you like to install now?"
+yesno if [ $decision = 1 ]; then 
+	pushd /usr/local/src/
+	rm -vrf /usr/local/src/maldetect-*
+	rm -vrf /usr/local/src/linux-malware-detect*
+	wget http://www.rfxn.com/downloads/maldetect-current.tar.gz
+	tar -zxvf maldetect-current.tar.gz
+	cd maldetect-*
+	sh ./install.sh
+	maldet --update-ver
+	#sed patch - commands added to address current problem with maldet overriding values in the conf file
+	sed -i 's/quarantine_hits=\"1\"/quarantine_hits=\"0\"/' /usr/local/maldetect/conf.maldet
+	sed -i 's/quarantine_clean=\"1\"/quarantine_clean=\"0\"/' /usr/local/maldetect/conf.maldet
+	sed -i 's/email_alert=\"1\"/email_alert=\"0\"/' /usr/local/maldetect/conf.maldet
+	sed -i 's/email_addr=\"you@domain.com\"/email_addr=\"\"/' /usr/local/maldetect/conf.maldet
+	#end sed patch
+	maldet --update
+	if [ -e /usr/local/cpanel/3rdparty/bin/clamscan ]
+	then
+	ln -s /usr/local/cpanel/3rdparty/bin/clamscan /usr/bin/clamscan 
+	ln -s /usr/local/cpanel/3rdparty/bin/freshclam /usr/bin/freshclam
+	if [ ! -d /var/lib/clamav ]
+	then mkdir /var/lib/clamav
+	fi
+	ln -s /usr/local/cpanel/3rdparty/share/clamav/main.cld /var/lib/clamav/main.cld
+	ln -s /usr/local/cpanel/3rdparty/share/clamav/daily.cld /var/lib/clamav/daily.cld
+	ln -s /usr/local/cpanel/3rdparty/share/clamav/bytecode.cld /var/lib/clamav/bytecode.cld 
+	else
+	echo -e "\n\e[31mClamAV does not appear to be installed through cPanel.\nThe ClamAV definitions will not be used.\e[39m\n"
+	fi
+	popd
+else #continue
+fi
+###########################################################################################33
 if [[ -x $(which maldet) ]]; then #maldet installed adding maldet sigs
 	sigdir2=/usr/local/maldetect/sigs
 else
