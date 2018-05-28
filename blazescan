@@ -220,13 +220,13 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 		header
 		helpmenu
 		header
-		echo -e "\n\n"
+		echo -e "\n"
 		#title
 		echo -e
 		echo -e "Please select scan you would like to run\n"
-		echo -e "Select 1 to scan all Cpanel accounts and Docroots\n"
-		echo -e "Select 2 to scan individual account\n"
-		echo -e "Select 3 to exit\n"
+		echo -e "Select [1] to scan all Cpanel accounts and Docroots\n"
+		echo -e "Select [2] to scan individual account\n"
+		echo -e "Select [3] to exit\n"
 		header
 read answer
 case "$answer" in
