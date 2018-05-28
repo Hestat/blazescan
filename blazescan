@@ -200,6 +200,8 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 		echo -e "Select 1 to scan all Cpanel accounts and Docroots\n"
 		echo -e "Select 2 to scan individual account\n"
 		echo -e "Select 3 to exit\n"
+		echo -e "Blazescan can also be run with flags\n"
+		echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account]"
 		header
 read answer
 case "$answer" in
