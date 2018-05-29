@@ -42,3 +42,14 @@ It will also use the maldet rules if installed http://www.rfxn.com/projects/linu
 
 
 runs using clamav as the scanning engine, will need to be installed and at least version 98+ to function properly.
+
+# Updates
+
+Malware signatures update automatically. 
+
+To update the scanner to the latest version either reclone and run the install script agin, or if you have the repo still locally, run:
+
+	git pull
+	./install.sh
+
+This will pul any changes from the git repo and apply them to your install.
