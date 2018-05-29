@@ -47,7 +47,7 @@ runs using clamav as the scanning engine, will need to be installed and at least
 
 Malware signatures update automatically. 
 
-To update the scanner to the latest version either reclone and run the install script agin, or if you have the repo still locally, run:
+To update the scanner to the latest version either reclone and run the install script again, or if you have the repo still locally, run:
 
 	git pull
 	./install.sh
