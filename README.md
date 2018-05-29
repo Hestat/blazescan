@@ -52,4 +52,4 @@ To update the scanner to the latest version either reclone and run the install s
 	git pull
 	./install.sh
 
-This will pul any changes from the git repo and apply them to your install.
+This will pull any changes from the git repo and apply them to your install.
