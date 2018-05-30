@@ -55,7 +55,7 @@ maldetinstall(){
 
 
 if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
-	echo -e "\nfound ClamAV installed continuing\n"
+	echo -e "\nFound ClamAV installed continuing\n"
 else
 	echo -e "Please install ClamAV first, then run this script again\n"
 	exit 0
@@ -91,5 +91,5 @@ mkdir /usr/local/scan 2> /dev/null
 cp -av $PWD/blazescan /usr/local/scan/
 ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
 
-echo -e "\nInstall complete\n Good Hunting\n"
+echo -e "\nInstall complete\nGood Hunting\n"
 
