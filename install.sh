@@ -49,6 +49,8 @@ else echo -e "Would you like to install maldet?\n"
 	echo -e "installing maldet\n"
 	maldetinstall
 	else echo -e "continuing install\n"
+	fi
+fi
 
 
 
