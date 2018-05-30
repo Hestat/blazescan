@@ -40,9 +40,14 @@ maldetinstall(){
 
 
 
+if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
+	echo -e "found ClamAV installed continuing"
+else
+	echo -e "Please install ClamAV first, then run this script again"
+	exit 0
+fi
 
-
-if [[ -x $(which maldet 2> /dev/null) ]]; then
+if [[ -x $(which maldet 2> /dev/null) ]]; then #maldet installed
 	echo -e "maldet installed continuing\n"
 else echo -e "Would you like to install maldet?\n"
 	yesno; if [ $decision = 1 ]; then
