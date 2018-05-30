@@ -5,6 +5,20 @@ PWD=$(pwd)
 #choose y/N
 yesno(){ read -p "$question " choice;case "$choice" in y|Y|yes|Yes|YES ) decision=1;; n|N|no|No|NO ) decision=0;; * ) echo "invalid" && yesno; esac; }
 
+wpcliinstall(){
+	pushd /usr/local/src/
+	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+	php wp-cli.phar --info
+
+	chmod +x wp-cli.phar
+	sudo mv wp-cli.phar /usr/local/bin/wp
+
+	wp --info
+	popd
+}
+
+
 maldetinstall(){
 	pushd /usr/local/src/
 	rm -vrf /usr/local/src/maldetect-*
@@ -41,19 +55,32 @@ maldetinstall(){
 
 
 if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
-	echo -e "found ClamAV installed continuing"
+	echo -e "found ClamAV installed continuing\n"
 else
-	echo -e "Please install ClamAV first, then run this script again"
+	echo -e "Please install ClamAV first, then run this script again\n"
 	exit 0
 fi
 
 if [[ -x $(which maldet 2> /dev/null) ]]; then #maldet installed
-	echo -e "maldet installed continuing\n"
-else echo -e "Would you like to install maldet?\n"
+	echo -e "Maldet installed continuing\n"
+else 
+	echo -e "Would you like to install Maldet?\n"
 	yesno; if [ $decision = 1 ]; then
-	echo -e "installing maldet\n"
+	echo -e "Installing maldet\n"
 	maldetinstall
 	else echo -e "continuing install\n"
+	fi
+fi
+
+if [[ -x $(which wp 2> /dev/null) ]]; then #wpcli installed
+	echo -e "WPCLI is installed continuing\n"
+else 
+	echo -e "Would you like to install WPCLI?\n"
+	yesno; if [ $decision = 1 ];then
+	echo -e "Installing WPCLI\n"
+	wpcliinstall
+	else 
+	echo -e "continuing install"
 	fi
 fi
 
