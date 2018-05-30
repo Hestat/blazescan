@@ -1,9 +1,12 @@
 #!/bin/bash
 PWD=$(pwd)
+##### Setting working environment #####
 
-
-#choose y/N
+#choose y/N to install
 yesno(){ read -p "$question " choice;case "$choice" in y|Y|yes|Yes|YES ) decision=1;; n|N|no|No|NO ) decision=0;; * ) echo "invalid" && yesno; esac; }
+
+
+##### Install functions #####
 
 wpcliinstall(){
 	pushd /usr/local/src/
@@ -51,11 +54,11 @@ maldetinstall(){
 	popd
 }
 
-
+###### Checking for required software and offering to install if needed #####
 
 
 if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
-	echo -e "found ClamAV installed continuing\n"
+	echo -e "\nfound ClamAV installed continuing\n"
 else
 	echo -e "Please install ClamAV first, then run this script again\n"
 	exit 0
@@ -84,7 +87,7 @@ else
 	fi
 fi
 
-
+##### moving scanner to proper dir to complete the install #####
 
 
 mkdir /usr/local/scan 2> /dev/null
