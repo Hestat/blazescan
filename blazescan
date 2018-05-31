@@ -133,7 +133,7 @@ timestamps(){
 }
 ############################# flags for running ###############################
 
-while getopts ":ahltu:d:" opt; do
+while getopts ":ahltu:d:w:" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
