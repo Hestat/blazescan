@@ -121,6 +121,7 @@ directoryscan(){
 wpclicheck(){
 	cd $wpdirect
 	wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
+	runuser -l  $wpuser -s /bin/bash -c 'wp checksum core'
 }
 #############################  time stamps and other things ###################
 
