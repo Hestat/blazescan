@@ -121,7 +121,7 @@ directoryscan(){
 wpclicheck(){
 	cd $wpdirect
 	wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
-	CMD=wp checksum core --path=$wpdirect
+	CMD=(wp checksum core --path=$wpdirect)
 	pwd	
 	runuser -l  $wpuser -s /bin/bash -c $CMD
 }
