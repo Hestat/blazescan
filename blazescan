@@ -119,8 +119,10 @@ directoryscan(){
 }
 
 wpclicheck(){
-	wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U) 
+	wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
+       	pushd $wpdirect	
 	runuser -l  $wpuser -s /bin/bash -c 'wp checksum core'
+	popd
 }
 #############################  time stamps and other things ###################
 
@@ -194,9 +196,7 @@ while getopts ":ahltu:d:w:" opt; do
 		wpdirect=$OPTARG
 		OP4=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n" | tee -a $OP4
-		pushd $wpdirect
 		wpclicheck | tee -a $OP4
-		popd
 		exit 0;;
 
 
