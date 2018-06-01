@@ -53,6 +53,11 @@ maldetinstall(){
 
 ###### Checking for required software and offering to install if needed #####
 
+if [[ -x $(which whmap1) ]]; then #cpanel try to link to clamAV
+	ln -s /usr/local/cpanel/3rdparty/bin/clamscan /usr/bin/clamscan 2> /dev/null
+	ln -s /usr/local/cpanel/3rdparty/bin/freshclam /usr/bin/freshclam 2> /dev/null
+else #continue
+fi
 
 if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
 	echo -e "\nFound ClamAV installed continuing\n"
