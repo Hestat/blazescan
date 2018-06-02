@@ -122,7 +122,7 @@ wpclicheck(){
 	cd $wpdirect
 	wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
 	#runuser -l $wpuser -s /bin/bash -c 'pushd $wpdirect'
-	runuser -u  $wpuser wp checksum core
+	runuser -l  tech -s /bin/bash -c "wp checksum core --path=$wpdirect"
 	echo -e "\n"
 	#runuser -l $wpuser -s /bin/bash -c popd
 }
