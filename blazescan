@@ -72,8 +72,8 @@ helpmenu(){
 	echo -e "  -l will show the results of the last scan\n"
 	echo -e "  -t will display ctime of the hits in the last scan\n"
 	echo -e "  -d scan a directory of your choosing\n"
+	echo -e "  -w will run a scan on the directory of your choosing with wordpress checks included\n"	
 	echo -e "  -h will display the help menu\n"
-	echo -e "  -w will run a scan on the directory of your choosing with wordpress checks included\n"
 	echo -e "By default the scanner will use the rules at https://github.com/Hestat/lw-yara\n"
 	echo -e "It will also use the maldet rules if installed http://www.rfxn.com/projects/linux-malware-detect/\n"
 }
