@@ -193,6 +193,7 @@ while getopts ":ahltu:d:w:" opt; do
 	
 	w ) #perform wordpress based scanning
 		wpdirect=$OPTARG
+		direct=$wpdirect
 		wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
 		OP3=/usr/local/scan/$wpuser-$(date +%F-%H%M.txt)
 		echo -e "\n" | tee -a $OP3
