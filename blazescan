@@ -120,7 +120,7 @@ directoryscan(){
 
 wpclicheck(){
 	#wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
-	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect"
+	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect" | tee -a $OP3
 	echo -e "\n"
 }
 #############################  time stamps and other things ###################
