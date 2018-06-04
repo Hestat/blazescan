@@ -126,7 +126,7 @@ wpclicheck(){
 #############################  time stamps and other things ###################
 
 list(){
-	if [[ -s $(grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}')) ]]; then
+	if [[ $(grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | wc -l) >= 1  ]]; then
 		grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}')
 	else echo -e "not hits found"
 	fi
