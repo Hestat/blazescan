@@ -119,12 +119,9 @@ directoryscan(){
 }
 
 wpclicheck(){
-	cd $wpdirect
-	wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
-	#runuser -l $wpuser -s /bin/bash -c 'pushd $wpdirect'
+	#wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
 	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect"
 	echo -e "\n"
-	#runuser -l $wpuser -s /bin/bash -c popd
 }
 #############################  time stamps and other things ###################
 
@@ -196,9 +193,17 @@ while getopts ":ahltu:d:w:" opt; do
 	
 	w ) #perform wordpress based scanning
 		wpdirect=$OPTARG
-		OP4=/usr/local/scan/scan-$(date +%F-%H%M.txt)
-		echo -e "\n" | tee -a $OP4
-		wpclicheck | tee -a $OP4
+		wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
+		OP3=/usr/local/scan/$wpuser-$(date +%F-%H%M.txt)
+		echo -e "\n" | tee -a $OP3
+		wpclicheck | tee -a $OP3
+		if [[ -x $(which maldet) ]];then
+			echo -e "maldet detected, using maldet and lw-yara signatures"
+			directoryscanM
+		else
+			echo -e "using only lw-yara signatures"
+			directoryscan
+		fi
 		exit 0;;
 
 
