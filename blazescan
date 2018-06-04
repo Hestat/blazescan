@@ -128,12 +128,14 @@ wpclicheck(){
 list(){
 	if [[ $(grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | wc -l) -ge "1"  ]]; then
 		grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}')
-	else echo -e "not hits found"
+	else echo -e " not hits found\n"
 	fi
 }
 
 timestamps(){
-	grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | xargs stat -t --format=%z,%n
+	if [[ $(grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | xargs stat -t --format=%z,%n 2> /dev/null) -ge "1" ]]; then 
+		grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | xargs stat -t --format=%z,%n
+else echo -e " no hits found\n"
 }
 ############################# flags for running ###############################
 
