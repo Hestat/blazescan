@@ -206,6 +206,10 @@ while getopts ":ahltu:d:w:" opt; do
 			directoryscan
 		fi
 		exit 0;;
+	
+	f ) #perform a forensic capture of all ctimes on files recursively via the path given
+
+		exit 0;;
 
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
