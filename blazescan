@@ -38,7 +38,7 @@ whi='\e[0m'
 
 ######################   versioning ########################################
 
-VERSION="[ version 1.11 ]"
+VERSION="[ version 1.12 ]"
 
 #check if blazescan is up to date
 
@@ -51,7 +51,7 @@ if [[ "$remoteprogsig" = "$localprogsig" ]]; then
 else echo -e "$yell Newer version of Blazescan available, would you like to update? [y/n]"
 	yesno; if [ $decision = 1 ]; then
 	wget -O /usr/local/scan/blazescan https://raw.githubusercontent.com/Hestat/blazescan/master/blazescan
-	else echo -e "Update complete\n"
+	else echo -e "Update complete$whi\n"
 	fi
 fi
 }
