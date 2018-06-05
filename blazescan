@@ -30,6 +30,10 @@ else
 	echo -e #not installed
 fi
 
+######################   versioning ########################################
+
+VERSION="1.0"
+
 ######################   create formatting #################################
 div(){
   for ((i=0;i<$1;i++)); do printf '='; done;
@@ -65,7 +69,7 @@ echo -e "Sometimes you need to burn it down and start fresh"
 #########################   help menu   #####################################
 
 helpmenu(){
-	echo -e "Blazescan is a malware scanning tool that uses clamav and custom malware databases\n"
+	echo -e "Blazescan $VERSION is a malware scanning tool that uses clamav and custom malware databases\n"
 	echo -e "If you run blazescan without any arguments it will present a simple scanning menu\n"
 	echo -e "  -a will scan all cpanel accounts\n"
 	echo -e "  -u will scan the specified cpanel user\n"
