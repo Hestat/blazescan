@@ -30,9 +30,33 @@ else
 	echo -e #not installed
 fi
 
+#create color vars
+yell='\e[33m'
+gre='\e[32m'
+whi='\e[0m'
+
+
 ######################   versioning ########################################
 
-VERSION="[ version 1.0 ]"
+VERSION="[ version 1.1 ]"
+
+#check if blazescan is up to date
+
+UPDATECHECK(){
+remoteprogsig=$(curl -sS https://raw.githubusercontent.com/Hestat/blazescan/master/blazescan | md5sum | awk '{print$1}')
+localprogsig=$(md5sum /usr/local/scan/blazescan | awk '{print$1}')
+if [[ "$remoteprogsig" = "$localprogsig" ]]; then
+	echo -e "$gre Blazescan is up to date $whi"
+	sleep 1
+else echo -e "$yell Newer version of Blazescan available, would you like to update? [y/n]"
+	yesno; if [ $decision = 1 ]; then
+	wget -O /usr/local/scan/blazescan https://raw.githubusercontent.com/Hestat/blazescan/master/blazescan
+	else echo -e "Update complete\n"
+	fi
+fi
+}
+
+
 
 ######################   create formatting #################################
 div(){
@@ -224,6 +248,9 @@ while getopts ":ahltu:d:w:" opt; do
 
 		exit 0;;
 
+	U ) #perform update checks
+		UPDATECHECK
+		exit 0;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
       ;;
