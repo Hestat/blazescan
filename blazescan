@@ -69,6 +69,7 @@ echo -e "Sometimes you need to burn it down and start fresh"
 #########################   help menu   #####################################
 
 helpmenu(){
+	header
 	echo -e "Blazescan $VERSION is a malware scanning tool that uses clamav and custom malware databases\n"
 	echo -e "If you run blazescan without any arguments it will present a simple scanning menu\n"
 	echo -e "  -a will scan all cpanel accounts\n"
@@ -80,6 +81,7 @@ helpmenu(){
 	echo -e "  -h will display the help menu\n"
 	echo -e "By default the scanner will use the rules at https://github.com/Hestat/lw-yara\n"
 	echo -e "It will also use the maldet rules if installed http://www.rfxn.com/projects/linux-malware-detect/\n"
+	header
 }
 
 ###########################   scan functions    ################################
