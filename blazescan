@@ -171,7 +171,7 @@ fi
 }
 ############################# flags for running ###############################
 
-while getopts ":ahltu:d:w:" opt; do
+while getopts ":ahltu:d:w:U" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -253,7 +253,7 @@ while getopts ":ahltu:d:w:" opt; do
 		exit 0;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
-      ;;
+	    exit 0;;
   esac
 done
 
