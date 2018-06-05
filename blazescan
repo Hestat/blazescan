@@ -40,7 +40,7 @@ div(){
 }
 
 header(){
-	echo -e "\n$(div 40)\n"
+	echo -e "\n$(div 80)\n"
 }
 
 header2=$(echo -e "$(div 3)")
@@ -241,7 +241,7 @@ if [[ -x $(which whmapi1) ]]; then #cpanel
 		header
 		helpmenu
 		header
-		echo -e "\n"
+		echo -e
 		#title
 		echo -e
 		echo -e "Please select scan you would like to run\n"
