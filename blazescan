@@ -51,7 +51,8 @@ if [[ "$remoteprogsig" = "$localprogsig" ]]; then
 else echo -e "$yell Newer version of Blazescan available, would you like to update? [y/n]"
 	yesno; if [ $decision = 1 ]; then
 	wget -O /usr/local/scan/blazescan https://raw.githubusercontent.com/Hestat/blazescan/master/blazescan
-	else echo -e "Update complete$whi\n"
+	echo -e "Update complete $whi\n"
+	else echo -e "Ending update check$whi\n"
 	fi
 fi
 }
