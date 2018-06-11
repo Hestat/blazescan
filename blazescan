@@ -185,7 +185,7 @@ fi
 }
 ############################# flags for running ###############################
 
-while getopts ":ahltu:d:w:U" opt; do
+while getopts ":ahltu:d:w:UA" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -211,21 +211,28 @@ while getopts ":ahltu:d:w:U" opt; do
 				fi
 			fi
 			exit 0;;
+
+	A ) # -A agressive mode
+			echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
+		       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
+			yesno; if [ $decision = 1 ]; then
+				clamdcpanelallscan
+			else
+				exit 0
+			fi;;
+
 	a ) # -a option to scan all cpanel accounts
 		#creating log file
 		OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP1
 		if [[ -x $(which maldet) ]]; then 
 			echo -e "maldet detected, using maldet and lw-yara signatures"
-			#if [ $(nproc) >= "2" ]; then 
-			#	echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
-			#       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
-			#	yesno; if [ $decision = 1 ]; then
-			#	clamdcpanelallscan
-			#else #continue
-			#	echo -e
-			#fi
-
+		#elif [ $(nproc) >= "2" ]; then 
+		#		echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
+		#	       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
+		#		yesno; if [ $decision = 1 ]; then
+		#		clamdcpanelallscan
+		#else
 			cpanelallscan2
 		else
 			echo -e "using only lw-yara signatures"
