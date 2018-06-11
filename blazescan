@@ -164,6 +164,11 @@ directoryscan(){
  	clamscan -ir --no-summary -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3 echo -e "Scan output file can be found here: $OP3"
 }
 
+clamddirectoryscan(){
+
+	 clamdscan --config-file=/usr/local/scan/blazescand.conf $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3 echo -e "Scan output file can be found here: $OP3"
+}
+
 wpclicheck(){
 	#wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
 	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect" | tee -a $OP3
@@ -257,7 +262,15 @@ while getopts ":ahltu:d:w:UA" opt; do
 		#creating log file
 		OP3=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP3
-		if [[ -x $(which maldet) ]];then
+		if [[ $(nproc) >= 2 ]]; then
+					echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
+				       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
+					yesno; if [ $decision = 1 ]; then
+					clamddirectoryscan
+					exit 0
+					else #continue
+					fi
+		elif [[ -x $(which maldet) ]];then
 			echo -e "maldet detected, using maldet and lw-yara signatures"
 			directoryscanM
 		else
