@@ -269,7 +269,7 @@ while getopts ":ahltu:d:w:UA" opt; do
 					clamddirectoryscan
 					exit 0
 					else #continue
-					fi
+		fi
 		elif [[ -x $(which maldet) ]];then
 			echo -e "maldet detected, using maldet and lw-yara signatures"
 			directoryscanM
