@@ -217,6 +217,7 @@ while getopts ":ahltu:d:w:UA" opt; do
 		       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
 			yesno; if [ $decision = 1 ]; then
 				clamdcpanelallscan
+				exit 0
 			else
 				exit 0
 			fi;;
