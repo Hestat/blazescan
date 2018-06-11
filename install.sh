@@ -2,6 +2,8 @@
 PWD=$(pwd)
 ##### Setting working environment #####
 
+mkdir /usr/local/scan 2> /dev/null
+
 #choose y/N to install
 yesno(){ read -p "$question " choice;case "$choice" in y|Y|yes|Yes|YES ) decision=1;; n|N|no|No|NO ) decision=0;; * ) echo "invalid" && yesno; esac; }
 
@@ -67,6 +69,15 @@ else
 	exit 0
 fi
 
+if [[ -x $(which clamdscan) 2>/dev/null ]]; then #clamd installed
+	cp -av $PWD/blazescand.conf /usr/local/scan/
+	echo -e "MaxThreads $(expr $(nproc) / 2)" >> /usr/local/scan/blazescand.conf
+	echo -e "\n Found Clamd installed continuing\n"
+else
+	echo -e "\n Clamd not found, consider installing for multithread support\n"
+fi
+
+
 if [[ -x $(which maldet 2> /dev/null) ]]; then #maldet installed
 	echo -e "Maldet installed continuing\n"
 else 
@@ -93,7 +104,6 @@ fi
 ##### moving scanner to proper dir to complete the install #####
 
 
-mkdir /usr/local/scan 2> /dev/null
 cp -av $PWD/blazescan /usr/local/scan/
 ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
 
