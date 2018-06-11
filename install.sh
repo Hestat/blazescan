@@ -69,7 +69,7 @@ else
 	exit 0
 fi
 
-if [[ -x $(which clamdscan) 2> /dev/null ]]; then #clamd installed
+if [[ -x $(which clamdscan 2> /dev/null) ]]; then #clamd installed
 	cp -av $PWD/blazescand.conf /usr/local/scan/
 	echo -e "MaxThreads $(expr $(nproc) / 2)" >> /usr/local/scan/blazescand.conf
 	echo -e "\n Found Clamd installed continuing\n"
