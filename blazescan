@@ -98,6 +98,7 @@ helpmenu(){
 	echo -e "Blazescan $VERSION is a malware scanning tool that uses clamav and custom malware databases\n"
 	echo -e "If you run blazescan without any arguments it will present a simple scanning menu\n"
 	echo -e "  -a will scan all cpanel accounts\n"
+	echo -e "  -A will use Agressive mode to scan all cpanel accounts\n"
 	echo -e "  -u will scan the specified cpanel user\n"
 	echo -e "  -l will show the results of the last scan\n"
 	echo -e "  -t will display ctime of the hits in the last scan\n"
@@ -213,16 +214,20 @@ while getopts ":ahltu:d:w:UA" opt; do
 			exit 0;;
 
 	A ) # -A agressive mode
-			echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
-		       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
-			yesno; if [ $decision = 1 ]; then
-				OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
-				echo -e "\n"|tee -a $OP1
-				clamdcpanelallscan
-				exit 0
-			else
-				exit 0
-			fi;;
+			if [[ -x $(which clamdscan 2>/dev/null) ]]; then
+				echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
+		       		echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
+				yesno; if [ $decision = 1 ]; then
+					OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
+					echo -e "\n"|tee -a $OP1
+					clamdcpanelallscan
+					exit 0
+					else
+					exit 0
+				fi
+				else "install clamd first"
+			fi
+			exit 0;;
 
 	a ) # -a option to scan all cpanel accounts
 		#creating log file
