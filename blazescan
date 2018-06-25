@@ -11,6 +11,14 @@ else
 mkdir -p /usr/local/scan
 fi
 
+if [[ -e /usr/local/scan/report ]];then #then pwd exists
+	echo -e 
+else
+mkdir -p /usr/local/scan/report
+fi
+
+reportdir=/usr/local/scan/report
+
 #set sigdir
 sigdir=/usr/local/scan/lw-yara
 
@@ -189,9 +197,28 @@ timestamps(){
 else echo -e " no hits found\n"
 fi
 }
+############################# reporting        ################################
+
+objectName=suspectfile$(date +%y%m%d-%H%M)
+bucket=blazescan-signatures
+resource="/${bucket}/${objectName}"
+contentType="text/plain"
+dateValue=`date -R`
+stringToSign="PUT\n\n${contentType}\n${dateValue}\n${resource}"
+
+s3put(){
+
+curl -v -i -X PUT -T "${upload}" \
+          -H "Host: ${bucket}.s3.amazonaws.com" \
+          -H "Date: ${dateValue}" \
+          -H "Content-Type: ${contentType}" \
+          https://${bucket}.s3-us-west-2.amazonaws.com/${objectName}
+}
+
+
 ############################# flags for running ###############################
 
-while getopts ":ahltu:d:w:UA" opt; do
+while getopts ":ahltu:d:w:UAR" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -301,6 +328,16 @@ while getopts ":ahltu:d:w:UA" opt; do
 
 	U ) #perform update checks
 		UPDATECHECK
+		exit 0;;
+	R ) #report a malicous file that was not found
+		echo -e "Provide the full path file you would like to send"
+		echo -e " EX: /home/test/example.php"
+		read file
+		cp $file $reportdir
+		upload=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1) 
+		s3put
+		rm upload
+		echo -e "Upload complete, thank you for reporting the file"
 		exit 0;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
