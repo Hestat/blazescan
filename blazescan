@@ -199,10 +199,10 @@ fi
 }
 ############################# reporting        ################################
 
-objectName=suspectfile$(date +%y%m%d-%H%M)
+objectName=suspectfile$(date +%y%m%d-%H%M).zip
 bucket=blazescan-signatures
 resource="/${bucket}/${objectName}"
-contentType="text/plain"
+contentType="application/zip"
 dateValue=`date -R`
 stringToSign="PUT\n\n${contentType}\n${dateValue}\n${resource}"
 
@@ -334,8 +334,11 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		echo -e " EX: /home/test/example.php"
 		read file
 		cp $file $reportdir
-		upload=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}') 
+		tempup=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}')
+		zip -P "malware" report.zip $tempup
+		upload=$(find $reportdir -maxdepth 1 -name '*.zip' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}') 
 		s3put
+		rm $tempup
 		rm $upload
 		echo -e "Upload complete, thank you for reporting the file"
 		exit 0;;
