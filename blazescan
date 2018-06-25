@@ -204,6 +204,7 @@ bucket=blazescan-signatures
 resource="/${bucket}/${objectName}"
 contentType="application/zip"
 dateValue=`date -R`
+acl="x-amz-acl:public-read"
 stringToSign="PUT\n\n${contentType}\n${dateValue}\n${resource}"
 
 s3put(){
@@ -212,6 +213,7 @@ curl -v -i -X PUT -T "${upload}" \
           -H "Host: ${bucket}.s3.amazonaws.com" \
           -H "Date: ${dateValue}" \
           -H "Content-Type: ${contentType}" \
+	  -H "$acl" \
           https://${bucket}.s3-us-west-2.amazonaws.com/${objectName}
 }
 
