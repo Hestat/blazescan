@@ -334,7 +334,7 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		echo -e " EX: /home/test/example.php"
 		read file
 		cp $file $reportdir
-		upload=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1) 
+		upload=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}') 
 		s3put
 		rm $upload
 		echo -e "Upload complete, thank you for reporting the file"
