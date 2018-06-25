@@ -336,7 +336,7 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		cp $file $reportdir
 		upload=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1) 
 		s3put
-		rm upload
+		rm $upload
 		echo -e "Upload complete, thank you for reporting the file"
 		exit 0;;
 
