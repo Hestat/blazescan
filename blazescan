@@ -337,7 +337,9 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		read file
 		cp $file $reportdir
 		tempup=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}')
-		zip -P "malware" /usr/local/scan/report/report.zip $tempup
+		pushd /usr/local/scan/report/
+		zip -P "malware" report.zip $tempup
+		popd
 		upload=$(find $reportdir -maxdepth 1 -name '*.zip' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}') 
 		s3put
 		rm $tempup
