@@ -90,6 +90,7 @@ else
 fi
 
 if [[ -x $(which wp 2> /dev/null) ]]; then #wpcli installed
+	wp cli update
 	echo -e "WPCLI is installed continuing\n"
 else 
 	echo -e "Would you like to install WPCLI?\n"
