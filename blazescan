@@ -361,8 +361,8 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		UPDATECHECK
 		exit 0;;
 	R ) #report a malicous file that was not found
-		echo -e "Provide the full path file you would like to send"
-		echo -e " EX: /home/test/example.php"
+		echo -e "$yellow Provide the full path file you would like to send"
+		echo -e " EX: /home/test/example.php $whi"
 		read file
 		cp $file $reportdir
 		tempup=$(find $reportdir -maxdepth 1 -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}' | cut -d / -f 6)
@@ -373,7 +373,7 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		s3put
 		#rm $tempup 
 		rm $upload 2> /dev/null
-		echo -e "Upload complete, thank you for reporting the file"
+		echo -e "$green Upload complete, thank you for reporting the file $whi"
 		exit 0;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
