@@ -122,6 +122,10 @@ maldetandyara(){
 	echo -e "$blue maldet detected, using maldet and lw-yara signatures $whi"
 }
 
+headtimestamp(){
+	echo -e "Change timestamps on malicious files flagged in the scan"
+}
+
 #########################   help menu   #####################################
 
 helpmenu(){
@@ -155,6 +159,8 @@ enumcpaneldocrootall(){
 clamdcpanelallscan(){
 	for FILE in $( enumcpaneldocrootall ); do echo -e "$yellow Scan location:\t$FILE\n $whi" | tee -a $OP1 
 		clamdscan --config-file=/usr/local/scan/blazescand.conf $FILE | tee -a $OP1; echo -e "\n" | tee -a $OP1 ; done; scanout; echo -e "$OP1\n"
+		headtimestamp >> $OP1
+		header >> $OP1
 		timestamps >> $OP1
 }
 
@@ -162,6 +168,8 @@ clamdcpanelallscan(){
 cpanelallscan1(){
 		for FILE in $( enumcpaneldocrootall ); do echo -e "$yellow Scan location:\t$FILE\n $whi" | tee -a $OP1 
 		clamscan -ir -d /usr/local/scan/lw-yara/lw.hdb -d /usr/local/scan/lw-yara/lw-rules_index.yar $FILE | tee -a $OP1; echo -e "\n" | tee -a $OP1 ; done; scanout;echo -e "$OP1\n"
+		headtimestamp >> $OP1
+		header >> $OP1
 		timestamps >> $OP1
 }
 
@@ -169,46 +177,62 @@ cpanelallscan1(){
 cpanelallscan2(){
 		for FILE in $( enumcpaneldocrootall ); do echo -e "$yellow Scan location:\t$FILE\n $whi" | tee -a $OP1 
 		clamscan -ir --no-summary -d /usr/local/maldetect/sigs -d /usr/local/scan/lw-yara/lw.hdb -d /usr/local/scan/lw-yara/lw-rules_index.yar $FILE | tee -a $OP1; echo -e "\n" | tee -a $OP1 ; done; scanout; echo -e "$OP1\n"
+		headtimestamp >> $OP1
+		header >> $OP1
 		timestamps >> $OP1
 }
 
 singlecpanelscan1a(){
                 for FILE2 in $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | awk -F":" '{print $2}'); do echo -e "$yellow Scan location:\t$FILE2\n $whi" | tee -a $OP2
                 clamscan -ir  --no-summary -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $FILE2 | tee -a $OP2; echo -e "\n" | tee -a $OP2;done; scanout; echo -e "$OP2\n"
+		headtimestamp >> $OP2
+		header >> $OP2
 		timestamps >> $OP2
 }
 
 singlecpanelscan2a(){
                 for FILE2 in $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | awk -F":" '{print $2}'); do echo -e "$yellow Scan location:\t$FILE2\n $whi" | tee -a $OP2
                 clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $FILE2 | tee -a $OP2; echo -e "\n" | tee -a $OP2;done; scanout; echo -e "$OP2\n"
+		headtimestamp >> $OP2
+		header >> $OP2
 		timestamps >> $OP2
 }
 
 singlecpanelscan1b(){
                 for FILE2 in $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | awk -F":" '{print $3}'); do echo -e "$yellow Scan location:\t$FILE2\n $whi" | tee -a $OP2
                 clamscan -ir  --no-summary -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $FILE2 | tee -a $OP2; echo -e "\n" | tee -a $OP2;done; scanout; echo -e "$OP2\n"
+		headtimestamp >> $OP2
+		header >> $OP2
 		timestamps >> $OP2
 }
 
 singlecpanelscan2b(){
                 for FILE2 in $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot | awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | awk -F":" '{print $3}'); do echo -e "$yellow Scan location:\t$FILE2\n $whi" | tee -a $OP2
                 clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $FILE2 | tee -a $OP2; echo -e "\n" | tee -a $OP2;done; scanout;echo -e "$OP2\n"
+		headtimestamp >> $OP2
+		header >> $OP2
 		timestamps >> $OP2
 }
 
 directoryscanM(){
  	clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3; scanout; echo -e "$OP3\n"
+	headtimestamp >> $OP3
+	header >> $OP3
 	timestamps >> $OP3
 }
 
 directoryscan(){
  	clamscan -ir --no-summary -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3; scanout; echo -e " $OP3\n"
+	headtimestamp >> $OP3
+	header >> $OP3
 	timestamps >> $OP3
 }
 
 clamddirectoryscan(){
 
 	 clamdscan --config-file=/usr/local/scan/blazescand.conf $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3 scanout; echo -e "$OP3\n"
+	 headtimestamp >> $OP3
+	 header >> $OP3
 	 timestamps >> $OP3
 }
 
