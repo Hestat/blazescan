@@ -46,7 +46,7 @@ whi='\e[0m'
 
 ######################   versioning ########################################
 
-VERSION="[ version 1.12 ]"
+VERSION="[ version 1.2 ]"
 
 #check if blazescan is up to date
 
@@ -68,6 +68,19 @@ fi
 
 
 ######################   create formatting #################################
+#Creates variable for red color
+red='\e[0;31m'
+#Creates variable for bold red color
+redbold='\e[1;31m'
+#Creates variable for green color
+green='\e[0;32m'
+#Creates variable for yellow color
+yellow='\e[1;33m'
+#Creates variable for purple color
+purple='\e[1;35m'
+#Creates variable for no color
+whi='\e[0m'
+
 div(){
   for ((i=0;i<$1;i++)); do printf '='; done;
 }
@@ -99,11 +112,15 @@ echo -e "----------------------------------------------"
 echo -e "Sometimes you need to burn it down and start fresh"
 }
 
+scanout(){
+	echo -e "$redbold Scan output file can be found here: $whi"
+}
+
 #########################   help menu   #####################################
 
 helpmenu(){
 	header
-	echo -e "Blazescan $VERSION is a malware scanning tool that uses clamav and custom malware databases\n"
+	echo -e "Blazescan $redbold $VERSION $whi is a malware scanning tool that uses clamav and custom malware databases\n"
 	echo -e "If you run blazescan without any arguments it will present a simple scanning menu\n"
 	echo -e "  -a will scan all cpanel accounts\n"
 	echo -e "  -A will use Agressive mode to scan all cpanel accounts\n"
@@ -112,7 +129,9 @@ helpmenu(){
 	echo -e "  -t will display ctime of the hits in the last scan\n"
 	echo -e "  -d scan a directory of your choosing\n"
 	echo -e "  -w will run a scan on the directory of your choosing with wordpress checks included\n"
-	echo -e "  -U will check for updates, and allow you to perform any available updates\n"	
+	echo -e "  -U will check for updates, and allow you to perform any available updates\n"
+	echo -e "  -R will allow you to report a malicious file back to add a signature"
+	echo -e "    use this if you encounter new malicious code that is not detected\n"	
 	echo -e "  -h will display the help menu\n"
 	echo -e "By default the scanner will use the rules at https://github.com/Hestat/lw-yara\n"
 	echo -e "It will also use the maldet rules if installed http://www.rfxn.com/projects/linux-malware-detect/\n"
@@ -174,7 +193,7 @@ directoryscan(){
 
 clamddirectoryscan(){
 
-	 clamdscan --config-file=/usr/local/scan/blazescand.conf $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3 echo -e "Scan output file can be found here: $OP3"
+	 clamdscan --config-file=/usr/local/scan/blazescand.conf $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3 scanout echo -e "$OP3"
 }
 
 wpclicheck(){
