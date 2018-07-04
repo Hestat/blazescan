@@ -1,6 +1,6 @@
 # blazescan
 
-Blazescan is a malware scanning tool, currently configured for Cpanel servers. there has been a dearth of updated scanners recently, and updating them would be the best long term solution, but until then, or if they do not get updated, we will have this.
+Blazescan is a malware scanning tool, currently configured for cPanel servers, but will run on any linux based server. If you are using consider reporting back unknown malicious files so we can add signatures for malware going forward.
 
 # install
 
@@ -8,6 +8,13 @@ Blazescan is a malware scanning tool, currently configured for Cpanel servers. t
 	cd blazescan
 	./install.sh
 	
+During the install will check to see if Clamscan is present, if not please install ClamAV first.
+
+https://www.clamav.net/downloads
+
+Follow the install procedure best suited for your OS.
+
+Additionally will ask if you want to install Maldet and WPCLI to take advantage of all supported features.
 
 # using
 
@@ -22,6 +29,8 @@ Blazescan is a malware scanning tool that uses clamav and custom malware databas
 
 	  -a will scan all cpanel accounts
 
+	  -A will use Agressive mode to scan all cpanel accounts
+
 	  -u will scan the specified cpanel user
 
 	  -l will show the results of the last scan
@@ -30,7 +39,15 @@ Blazescan is a malware scanning tool that uses clamav and custom malware databas
 
 	  -d scan a directory of your choosing
 
+	  -w will run a scan on the directory of your choosing with wordpress checks included
+
+	  -U will check for updates, and allow you to perform any available updates
+
+	  -R will allow you to report a malicious file back to add a signature
+	     use this if you encounter new malicious code that is not detected
+
 	  -h will display the help menu
+	
 
 By default the scanner will use the rules at https://github.com/Hestat/lw-yara
 
