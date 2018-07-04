@@ -80,6 +80,8 @@ yellow='\e[1;33m'
 purple='\e[1;35m'
 #Creates variable for no color
 whi='\e[0m'
+#blue
+blue='\e[34m'
 
 div(){
   for ((i=0;i<$1;i++)); do printf '='; done;
@@ -114,6 +116,10 @@ echo -e "Sometimes you need to burn it down and start fresh"
 
 scanout(){
 	echo -e "$redbold Scan output file can be found here: $whi"
+}
+
+maldetandyara(){
+	echo -e "$blue maldet detected, using maldet and lw-yara signatures $whi"
 }
 
 #########################   help menu   #####################################
@@ -250,7 +256,8 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		OP2=/usr/local/scan/$user-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP2
 		if [[ -x $(which maldet) ]];then 
-			echo -e "maldet detected, using maldet and lw-yara signatures"
+			#echo -e "maldet detected, using maldet and lw-yara signatures"
+			maldetandyara
 			if [[ $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot |awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | wc -l) -eq "1" ]]; then 
                        			singlecpanelscan2a
                        	else
@@ -287,7 +294,8 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP1
 		if [[ -x $(which maldet) ]]; then 
-			echo -e "maldet detected, using maldet and lw-yara signatures"
+			#echo -e "maldet detected, using maldet and lw-yara signatures"
+			maldetandyara
 		#elif [ $(nproc) >= "2" ]; then 
 		#		echo -e "Multiple CPU cores detected, would you like to use Blazescan in Aggressive mode? [y/n]"
 		#	       	echo -e "Warning if the server is under load, this is not recommended as it will create additional heavy load on the system"	
@@ -319,7 +327,8 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		#	else #continue
 		#	fi
 		if [[ -x $(which maldet) ]];then
-			echo -e "maldet detected, using maldet and lw-yara signatures"
+			#echo -e "maldet detected, using maldet and lw-yara signatures"
+			maldetandyara
 			directoryscanM
 		else
 			echo -e "using only lw-yara signatures"
@@ -335,7 +344,8 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		echo -e "\n" | tee -a $OP3
 		wpclicheck | tee -a $OP3
 		if [[ -x $(which maldet) ]];then
-			echo -e "maldet detected, using maldet and lw-yara signatures"
+			#echo -e "maldet detected, using maldet and lw-yara signatures"
+			maldetandyara
 			directoryscanM
 		else
 			echo -e "using only lw-yara signatures"
@@ -399,7 +409,8 @@ case "$answer" in
 		OP1=/usr/local/scan/scan-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP1
 		if [[ -x $(which maldet) ]]; then 
-			echo -e "maldet detected, using maldet and lw-yara signatures"
+			#echo -e "maldet detected, using maldet and lw-yara signatures"
+			maldetandyara
 			cpanelallscan2
 		else
 			echo -e "using only lw-yara signatures"
@@ -420,7 +431,8 @@ case "$answer" in
 		OP2=/usr/local/scan/$user-$(date +%F-%H%M.txt)
 		echo -e "\n"|tee -a $OP2
 		if [[ -x $(which maldet) ]];then 
-			echo -e "maldet detected, using maldet and lw-yara signatures"
+			#echo -e "maldet detected, using maldet and lw-yara signatures"
+			maldetandyara
 			if [[ $(find /var/cpanel/userdata/$user -type f | xargs grep documentroot |awk -F":" '{print$1}' | egrep -v "(cache|SSL|nobody)" | xargs grep documentroot | wc -l) -eq "1" ]]; then 
                        			singlecpanelscan2a
                        	else
