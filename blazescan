@@ -209,7 +209,7 @@ stringToSign="PUT\n\n${contentType}\n${dateValue}\n${resource}"
 
 s3put(){
 
-curl -v -i -X PUT -T "${upload}" \
+curl  -i -X PUT -T "${upload}" \
           -H "Host: ${bucket}.s3.amazonaws.com" \
           -H "Date: ${dateValue}" \
           -H "Content-Type: ${contentType}" \
