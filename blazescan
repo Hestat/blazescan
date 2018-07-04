@@ -342,8 +342,8 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		popd
 		upload=$(find $reportdir -maxdepth 1 -name '*.zip' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1|awk '{print$4}') 
 		s3put
-		#rm $tempup
-		rm $upload
+		#rm $tempup 
+		rm $upload 2> /dev/null
 		echo -e "Upload complete, thank you for reporting the file"
 		exit 0;;
 
