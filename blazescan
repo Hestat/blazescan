@@ -184,7 +184,7 @@ singlecpanelscan2b(){
 }
 
 directoryscanM(){
- 	clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3; scanout echo -e "$OP3"
+ 	clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3; scanout; echo -e "$OP3"
 }
 
 directoryscan(){
