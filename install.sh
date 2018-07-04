@@ -7,6 +7,23 @@ mkdir /usr/local/scan 2> /dev/null
 #choose y/N to install
 yesno(){ read -p "$question " choice;case "$choice" in y|Y|yes|Yes|YES ) decision=1;; n|N|no|No|NO ) decision=0;; * ) echo "invalid" && yesno; esac; }
 
+##### formatting #####
+
+#Creates variable for red color
+red='\e[0;31m'
+#Creates variable for bold red color
+redbold='\e[1;31m'
+#Creates variable for green color
+green='\e[0;32m'
+#Creates variable for yellow color
+yellow='\e[1;33m'
+#Creates variable for purple color
+purple='\e[1;35m'
+#Creates variable for no color
+whi='\e[0m'
+#blue
+blue='\e[34m'
+
 
 ##### Install functions #####
 
@@ -59,29 +76,29 @@ if [[ -x $(which whmapi1) ]]; then #cpanel try to link to clamAV
 	ln -s /usr/local/cpanel/3rdparty/bin/clamscan /usr/bin/clamscan 2> /dev/null
 	ln -s /usr/local/cpanel/3rdparty/bin/freshclam /usr/bin/freshclam 2> /dev/null
 else #continue
-	echo -e "Installing..."
+	echo -e "$green Installing... $whi"
 fi
 
 if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
-	echo -e "\nFound ClamAV installed continuing\n"
+	echo -e "$green\nFound ClamAV installed continuing\n$whi"
 else
-	echo -e "Please install ClamAV first, then run this script again\n"
+	echo -e "$redbold Please install ClamAV first, then run this script again\n $whi"
 	exit 0
 fi
 
 if [[ -x $(which clamdscan 2> /dev/null) ]]; then #clamd installed
 	cp -av $PWD/blazescand.conf /usr/local/scan/
 	echo -e "MaxThreads $(expr $(nproc) / 2)" >> /usr/local/scan/blazescand.conf
-	echo -e "\n Found Clamd installed continuing\n"
+	echo -e "$green\n Found Clamd installed continuing\n $whi"
 else
-	echo -e "\n Clamd not found, consider installing for multithread support\n"
+	echo -e "$yellow\n Clamd not found, consider installing for multithread support\n"
 fi
 
 
 if [[ -x $(which maldet 2> /dev/null) ]]; then #maldet installed
-	echo -e "Maldet installed continuing\n"
+	echo -e "$green Maldet installed continuing\n $whi"
 else 
-	echo -e "Would you like to install Maldet?\n"
+	echo -e "$yellow Would you like to install Maldet?\n $whi"
 	yesno; if [ $decision = 1 ]; then
 	echo -e "Installing maldet\n"
 	maldetinstall
@@ -90,16 +107,16 @@ else
 fi
 
 if [[ -x $(which wp 2> /dev/null) ]]; then #wpcli installed
-	echo -e "Checking for wpcli updates"
+	echo -e "$green Checking for wpcli updates $whi"
 	wp cli update
-	echo -e "WPCLI is installed continuing\n"
+	echo -e "$green WPCLI is installed continuing\n $whi"
 else 
-	echo -e "Would you like to install WPCLI?\n"
+	echo -e "$yellow Would you like to install WPCLI?\n $whi"
 	yesno; if [ $decision = 1 ];then
-	echo -e "Installing WPCLI\n"
+	echo -e "$green Installing WPCLI\n $whi"
 	wpcliinstall
 	else 
-	echo -e "continuing install"
+	echo -e "$green continuing install $whi"
 	fi
 fi
 
@@ -109,5 +126,5 @@ fi
 cp -av $PWD/blazescan /usr/local/scan/
 ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
 
-echo -e "\nInstall complete\nGood Hunting\n"
+echo -e "$green\nInstall complete\nGood Hunting\n $whi"
 
