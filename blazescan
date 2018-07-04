@@ -137,7 +137,7 @@ helpmenu(){
 	echo -e "  -w will run a scan on the directory of your choosing with wordpress checks included\n"
 	echo -e "  -U will check for updates, and allow you to perform any available updates\n"
 	echo -e "  -R will allow you to report a malicious file back to add a signature"
-	echo -e "    use this if you encounter new malicious code that is not detected\n"	
+	echo -e "     use this if you encounter new malicious code that is not detected\n"	
 	echo -e "  -h will display the help menu\n"
 	echo -e "By default the scanner will use the rules at https://github.com/Hestat/lw-yara\n"
 	echo -e "It will also use the maldet rules if installed http://www.rfxn.com/projects/linux-malware-detect/\n"
@@ -191,6 +191,7 @@ singlecpanelscan2b(){
 
 directoryscanM(){
  	clamscan -ir  --no-summary -d /usr/local/maldetect/sigs -d  /usr/local/scan/lw-yara/lw.hdb -d  /usr/local/scan/lw-yara/lw-rules_index.yar $direct | tee -a $OP3; echo -e "\n" | tee -a $OP3; scanout; echo -e "$OP3\n"
+	blazescan -t >> $OP3
 }
 
 directoryscan(){
