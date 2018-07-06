@@ -259,7 +259,7 @@ fi
 }
 
 forensic(){
-	find $direct | xargs stat -t --format=%y:%n > $OP4
+	find $direct | xargs stat -t --format=%y:%n >> $OP4
 }
 
 ############################# reporting        ################################
@@ -398,8 +398,10 @@ while getopts ":ahltu:d:w:UARf" opt; do
 		read direct
 		echo -e "Provide your username:"
 		read USER
-		OP4=/usr/local/scan/forensic-$USER-$(date +%F-%H%M.txt).log
+		OP4=/usr/local/scan/forensic-$USER-$(date +%F-%H%M).log
 		forensic
+		echo -e "Log can be found here:"
+		echo -e "$OP4"
 		exit 0;;
 
 	U ) #perform update checks
