@@ -257,6 +257,11 @@ timestamps(){
 else echo -e " no hits found\n"
 fi
 }
+
+forensic(){
+	find $direct | xargs stat -t --format=%y:%n > $OP4
+}
+
 ############################# reporting        ################################
 
 objectName=suspectfile$(date +%y%m%d-%H%M).zip
@@ -280,7 +285,7 @@ curl  -i -X PUT -T "${upload}" \
 
 ############################# flags for running ###############################
 
-while getopts ":ahltu:d:w:UAR" opt; do
+while getopts ":ahltu:d:w:UARf" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -389,7 +394,12 @@ while getopts ":ahltu:d:w:UAR" opt; do
 		exit 0;;
 	
 	f ) #perform a forensic capture of all ctimes on files recursively via the path given
-
+		echo -e "What path would you like to collect forensic change timestamps?"
+		read direct
+		echo -e "Provide your username:"
+		read USER
+		OP4=/usr/local/scan/forensic-$USER-$(date +%F-%H%M.txt).log
+		forensic
 		exit 0;;
 
 	U ) #perform update checks
