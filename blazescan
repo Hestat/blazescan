@@ -260,7 +260,7 @@ fi
 }
 
 forensic(){
-	find $direct | xargs stat -t --format=%y:%n >> $OP4
+	find $direct -type f | xargs stat -t --format=%y:%n >> $OP4
 }
 
 ############################# reporting        ################################
