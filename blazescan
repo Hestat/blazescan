@@ -401,7 +401,7 @@ while getopts ":ahltu:d:w:UARf" opt; do
 		read USER
 		OP4=/usr/local/scan/forensic-$USER-$(date +%F-%H%M).log
 		forensic
-		echo -e "Log can be found here:"
+		echo -e "$red Log can be found here: $whi"
 		echo -e "$OP4"
 		exit 0;;
 
