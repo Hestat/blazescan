@@ -427,10 +427,10 @@ while getopts ":ahltu:d:w:UARfi:" opt; do
 
 	i ) #perform file analysis
 		fileid=$OPTARG
-			stat $fileid
-			file $fileid
-			strings $fileid
-			sha1sum $fileid
+			stat $fileid | less
+			file $fileid | less
+			strings $fileid | less
+			sha1sum $fileid | less
 			exit 0;;
 
 	
