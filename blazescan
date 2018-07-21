@@ -246,6 +246,46 @@ wpclicheck(){
 	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect" | tee -a $OP3
 	echo -e "\n"
 }
+
+
+############################# network information ############################# 
+
+listening(){
+	header
+	echo -e "$header2 Listening services $header2"
+	if [[ -e /etc/systemd ]]; then #systemd os using ss
+		ss -tulpn
+	else #init using netstat
+		netstat -tulpn
+	fi
+	header
+}
+
+active(){
+	header
+	echo -e "$header2 Active connections $header2"
+	if [[ -e /etc/systemd ]]; then #systemd os using ss
+		ss -tupn
+	else #init using netstat
+		netstat -tupn
+	fi
+	header
+}
+
+users(){
+	header
+	echo -e "$header2 Connected users $header2"
+	w
+	echo -e
+	header
+	echo -e "$header2 Last 10 ssh logins $header2\n"
+	header
+}
+
+
+
+
+
 #############################  time stamps and other things ###################
 
 list(){
@@ -300,7 +340,7 @@ curl  -i -X PUT -T "${upload}" \
 ############################# flags for running ###############################
 
 
-while getopts ":ahltu:d:w:UARfi:m" opt; do
+while getopts ":ahltu:d:w:UARfi:mn" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -461,6 +501,14 @@ while getopts ":ahltu:d:w:UARfi:m" opt; do
 		cat $envelope | sendmail $addr
 		rm $envelope	
 		exit 0;;
+
+
+	n ) #network checks
+		users
+		listening
+		active
+		exit 0;;
+
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
 	    exit 0;;
