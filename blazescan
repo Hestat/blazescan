@@ -438,7 +438,7 @@ case "$subcommand" in
 		address=$1;
 		echo -e "I'm running!"
 	       	shift
-		;;
+		exit 0;;
 esac
 
 #############################   begin main   ##################################
