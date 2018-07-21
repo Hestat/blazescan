@@ -271,6 +271,7 @@ filebasic(){
 			file $fileid
 			header
 			sha1sum $fileid
+			header
 }
 
 ############################# reporting        ################################
