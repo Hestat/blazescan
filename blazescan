@@ -428,9 +428,11 @@ while getopts ":ahltu:d:w:UARfi:" opt; do
 	i ) #perform file analysis
 		fileid=$OPTARG
 			stat $fileid
+			echo -e
 			file $fileid
+			echo -e
 			sha1sum $fileid
-			echo -e " Would you like to view file strings? y/n"
+			echo -e "\n Would you like to view file strings? y/n"
 			yesno; if [ $decision = 1 ]; then
 				strings $fileid | less
 			else
