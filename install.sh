@@ -129,6 +129,7 @@ else
 	cp -av $PWD/blazescand.conf /usr/local/scan/
 	cp -av $PWD/blazescan /usr/local/scan/
 	ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
+fi
 
 echo -e "$green\nInstall complete\nGood Hunting\n $whi"
 
