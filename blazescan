@@ -429,6 +429,17 @@ while getopts ":ahltu:d:w:UARf" opt; do
   esac
 done
 
+shift $((OPTIND -1))
+
+subcommand=$1; shift
+case "$subcommand" in
+
+	mail)
+		address=$1;
+	       	shift
+		;;
+esac
+
 #############################   begin main   ##################################
 
 if [[ -x $(which whmapi1) ]]; then #cpanel
