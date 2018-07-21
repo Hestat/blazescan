@@ -120,6 +120,14 @@ else
 	fi
 fi
 
+if [[ -x $(which zip 2> /dev/null) ]]; then #zip installed
+	echo -e "$gre zip installed continuing $whi"
+else 
+	echo -e "$yellow zip needs to be installed for -R reportings to function properly"
+	echo -e " please run apt-get install, or yum install for zip package $whi"
+	sleep 2
+fi
+
 ##### moving scanner to proper dir to complete the install #####
 
 if [[ -e /usr/local/scan/blazescand.conf ]];then
