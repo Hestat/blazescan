@@ -27,10 +27,10 @@ Blazescan is a malware scanning tool that uses clamav and custom malware databas
 
 	If you run blazescan without any arguments it will present a simple scanning menu
 	
-  	-a will scan all cpanel accounts
+  	  -a will scan all cpanel accounts
 	
-  	-A will use Agressive mode to scan all cpanel accounts
-     	uses clamd to run multicore scans, can increase load
+  	  -A will use Agressive mode to scan all cpanel accounts
+     	  uses clamd to run multicore scans, can increase load
 	
 	  -u will scan the specified cpanel user
 	
