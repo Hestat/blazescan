@@ -286,16 +286,6 @@ curl  -i -X PUT -T "${upload}" \
 
 ############################# flags for running ###############################
 
-shift $((OPTIND -1))
-
-subcommand=$1; shift
-case "$subcommand" in
-
-	mail)
-		address=$1;
-		echo -e "I'm running!"
-	       	shift;;
-esac
 
 while getopts ":ahltu:d:w:UARf" opt; do
   case ${opt} in
