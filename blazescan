@@ -286,6 +286,18 @@ curl  -i -X PUT -T "${upload}" \
 
 ############################# flags for running ###############################
 
+shift $((OPTIND -1))
+
+subcommand=$1; shift
+case "$subcommand" in
+
+	mail)
+		address=$1;
+		echo -e "I'm running!"
+	       	shift
+		exit 0;;
+esac
+
 while getopts ":ahltu:d:w:UARf" opt; do
   case ${opt} in
     h ) # process option h to display help menu
@@ -429,17 +441,17 @@ while getopts ":ahltu:d:w:UARf" opt; do
   esac
 done
 
-shift $((OPTIND -1))
+#shift $((OPTIND -1))
 
-subcommand=$1; shift
-case "$subcommand" in
+#subcommand=$1; shift
+#case "$subcommand" in
 
-	mail)
-		address=$1;
-		echo -e "I'm running!"
-	       	shift
-		exit 0;;
-esac
+#	mail)
+#		address=$1;
+#		echo -e "I'm running!"
+#	       	shift
+#		exit 0;;
+#esac
 
 #############################   begin main   ##################################
 
