@@ -438,7 +438,7 @@ while getopts ":ahltu:d:w:UARfi:" opt; do
 
 	i ) #perform file analysis
 		fileid=$OPTARG
-		OPFILE=/usr/local/scan/filecheck-$(date +%F-%H%M.log)
+		OPFILE=/usr/local/scan/filecheck-$fileid-$(date +%F-%H%M.log)
 			filebasic >> $OPFILE
 			filebasic
 			echo -e "\n Would you like to view file strings? y/n"
