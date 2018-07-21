@@ -121,7 +121,7 @@ else
 fi
 
 if [[ -x $(which zip 2> /dev/null) ]]; then #zip installed
-	echo -e "$gre zip installed continuing $whi"
+	echo -e "$green zip installed continuing\n $whi"
 else 
 	echo -e "$yellow zip needs to be installed for -R reportings to function properly"
 	echo -e " please run apt-get install, or yum install for zip package $whi"
