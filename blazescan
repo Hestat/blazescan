@@ -299,7 +299,7 @@ curl  -i -X PUT -T "${upload}" \
 ############################# flags for running ###############################
 
 
-while getopts ":ahltu:d:w:UARfi:" opt; do
+while getopts ":ahltu:d:w:UARfi:m" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
