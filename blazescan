@@ -264,6 +264,15 @@ forensic(){
 	find $direct -type f | xargs stat -t --format=%y:%n 2> /dev/null 1>> $OP4
 }
 
+filebasic(){
+			header
+			stat $fileid
+			header
+			file $fileid
+			header
+			sha1sum $fileid
+}
+
 ############################# reporting        ################################
 
 objectName=suspectfile$(date +%y%m%d-%H%M).zip
@@ -428,18 +437,16 @@ while getopts ":ahltu:d:w:UARfi:" opt; do
 
 	i ) #perform file analysis
 		fileid=$OPTARG
-			header
-			stat $fileid
-			header
-			file $fileid
-			header
-			sha1sum $fileid
+		OPFILE=/usr/local/scan/filecheck-$(date +%F-%H%M.log)
+			filebasic >> $OPFILE
+			filebasic
 			echo -e "\n Would you like to view file strings? y/n"
 			yesno; if [ $decision = 1 ]; then
 				strings $fileid | less
 			else
 				echo -e
 			fi
+			echo -e "basic file info recorded in $OPFILE"
 			exit 0;;
 
 	
