@@ -279,7 +279,6 @@ users(){
 	header
 	echo -e "$red $header2 Last 10 ssh logins $header2 $whi\n"
 	last | head
-	header
 }
 
 
