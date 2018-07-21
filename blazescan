@@ -46,7 +46,7 @@ whi='\e[0m'
 
 ######################   versioning ########################################
 
-VERSION="[ version 1.2 ]"
+VERSION="[ version 1.3 ]"
 
 #check if blazescan is up to date
 
