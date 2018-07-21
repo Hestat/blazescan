@@ -77,3 +77,11 @@ To update the scanner to the latest version either reclone and run the install s
 	./install.sh
 
 This will pull any changes from the git repo and apply them to your install.
+
+## Articles
+
+Writeups of the tool and its features:
+
+https://laskowski-tech.com/2018/05/29/blazescan-linux-malware-scanning-utility/
+
+https://laskowski-tech.com/2018/07/21/blazescan-v-1-3-updates/
