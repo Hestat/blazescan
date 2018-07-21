@@ -26,26 +26,33 @@ simply start with
 Blazescan is a malware scanning tool that uses clamav and custom malware databases
 
 	If you run blazescan without any arguments it will present a simple scanning menu
-
-	  -a will scan all cpanel accounts
-
-	  -A will use Agressive mode to scan all cpanel accounts
-
+	
+  	-a will scan all cpanel accounts
+	
+  	-A will use Agressive mode to scan all cpanel accounts
+     	uses clamd to run multicore scans, can increase load
+	
 	  -u will scan the specified cpanel user
-
+	
 	  -l will show the results of the last scan
-
+	
 	  -t will display ctime of the hits in the last scan
-
+	
 	  -d scan a directory of your choosing
-
+	
 	  -w will run a scan on the directory of your choosing with wordpress checks included
-
+	
+	  -f will run search for all files in the directory given and record ctime of all files
+	
+	  -i provide a file to pull vital stats about the file
+	
+	  -m will email the list of hits from the last scan, set email in blazscand.conf Mailtoaddress
+	
 	  -U will check for updates, and allow you to perform any available updates
-
+	
 	  -R will allow you to report a malicious file back to add a signature
 	     use this if you encounter new malicious code that is not detected
-
+	
 	  -h will display the help menu
 	
 
