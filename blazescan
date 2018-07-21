@@ -287,7 +287,7 @@ curl  -i -X PUT -T "${upload}" \
 ############################# flags for running ###############################
 
 
-while getopts ":ahltu:d:w:UARf" opt; do
+while getopts ":ahltu:d:w:UARfm" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -424,6 +424,10 @@ while getopts ":ahltu:d:w:UARf" opt; do
 		rm $upload 2> /dev/null
 		echo -e "$green Upload complete, thank you for reporting the file $whi"
 		exit 0;;
+	
+	m ) #mail-to function
+		echo -e "I will mail a thing!"
+		;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
 	    exit 0;;
