@@ -143,6 +143,7 @@ helpmenu(){
 	echo -e "  -w will run a scan on the directory of your choosing with wordpress checks included\n"
 	echo -e "  -f will run search for all files in the directory given and record ctime of all files\n"
 	echo -e "  -i provide a file to pull vital stats about the file\n"
+	echo -e "  -m will email the list of hits from the last scan, set email in blazscand.conf Mailtoaddress\n"
 	echo -e "  -U will check for updates, and allow you to perform any available updates\n"
 	echo -e "  -R will allow you to report a malicious file back to add a signature"
 	echo -e "     use this if you encounter new malicious code that is not detected\n"	
