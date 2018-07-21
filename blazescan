@@ -294,8 +294,7 @@ case "$subcommand" in
 	mail)
 		address=$1;
 		echo -e "I'm running!"
-	       	shift
-		exit 0;;
+	       	shift;;
 esac
 
 while getopts ":ahltu:d:w:UARf" opt; do
