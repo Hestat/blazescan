@@ -427,11 +427,11 @@ while getopts ":ahltu:d:w:UARfi" opt; do
 
 	i ) #perform file analysis
 		fileid=$OPTARG
-		stat $fileid
-		file $fileid
-		strings $fileid
-		sha1sum $fileid
-		exit 0;;
+			stat $fileid
+			file $fileid
+			strings $fileid
+			sha1sum $fileid
+			exit 0;;
 
 	
 	m ) #mail-to function
