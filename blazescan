@@ -274,11 +274,12 @@ active(){
 
 users(){
 	header
-	echo -e "$header2 Connected users $header2"
+	echo -e "$header2 Connected users $header2\n"
 	w
 	echo -e
 	header
 	echo -e "$header2 Last 10 ssh logins $header2\n"
+	last | head
 	header
 }
 
