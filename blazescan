@@ -430,7 +430,7 @@ while getopts ":ahltu:d:w:UARf" opt; do
   esac
 done
 
-#shift $((OPTIND -1))
+shift "$((OPTIND -1))"
 
 #subcommand=$1; shift
 #case "$subcommand" in
