@@ -252,7 +252,7 @@ wpclicheck(){
 
 listening(){
 	header
-	echo -e "$header2 Listening services $header2"
+	echo -e "$red $header2 Listening services $header2 $whi\n"
 	if [[ -e /etc/systemd ]]; then #systemd os using ss
 		ss -tulpn
 	else #init using netstat
@@ -263,7 +263,7 @@ listening(){
 
 active(){
 	header
-	echo -e "$header2 Active connections $header2"
+	echo -e "$red $header2 Active connections $header2 $whi\n"
 	if [[ -e /etc/systemd ]]; then #systemd os using ss
 		ss -tupn
 	else #init using netstat
@@ -274,11 +274,11 @@ active(){
 
 users(){
 	header
-	echo -e "$header2 Connected users $header2\n"
+	echo -e "$red $header2 Connected users $header2 $whi\n"
 	w
 	echo -e
 	header
-	echo -e "$header2 Last 10 ssh logins $header2\n"
+	echo -e "$red $header2 Last 10 ssh logins $header2 $whi\n"
 	last | head
 	header
 }
