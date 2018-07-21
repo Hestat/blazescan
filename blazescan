@@ -436,6 +436,7 @@ case "$subcommand" in
 
 	mail)
 		address=$1;
+		echo -e "I'm running!"
 	       	shift
 		;;
 esac
