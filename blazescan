@@ -434,6 +434,7 @@ while getopts ":ahltu:d:w:UARfi:" opt; do
 			yesno; if [ $decision = 1 ]; then
 				strings $fileid | less
 			else
+				echo -e
 			fi
 			exit 0;;
 
