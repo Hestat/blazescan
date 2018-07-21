@@ -131,7 +131,7 @@ headtimestamp(){
 
 helpmenu(){
 	header
-	echo -e "Blazescan $redbold $VERSION $whi is a malware scanning tool that uses clamav and custom malware databases\n"
+	echo -e "Blazescan $redbold $VERSION $whi is a malware scanning and incident response tool that uses clamav and custom malware databases\n"
 	echo -e "If you run blazescan without any arguments it will present a simple scanning menu\n"
 	echo -e "  -a will scan all cpanel accounts\n"
 	echo -e "  -A will use Agressive mode to scan all cpanel accounts"
