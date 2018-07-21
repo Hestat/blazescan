@@ -427,6 +427,11 @@ while getopts ":ahltu:d:w:UARfm" opt; do
 	
 	m ) #mail-to function
 		echo -e "I will mail a thing!"
+		addr=$(grep Mailtoaddress /usr/local/scan/blazescand.conf | cut -d = -f2)
+		cat $OP1 | sendmail $addr
+		cat $OP2 | sendmail $addr
+		cat $OP3 | sendmail $addr
+		cat $OP4 | sendmail $addr
 		;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
