@@ -457,7 +457,7 @@ while getopts ":ahltu:d:w:UARfi:m" opt; do
 		addr=$(grep Mailtoaddress /usr/local/scan/blazescand.conf | cut -d = -f2)
 		echo -e "Subject: Blazescan hits report" > $envelope
 	        list >> $envelope
-		echo -e "Sending report to $addr"
+		echo -e "Sending report to $addr\n\n"
 		cat $envelope | sendmail $addr
 		rm $envelope	
 		exit 0;;
