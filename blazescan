@@ -18,6 +18,7 @@ mkdir -p /usr/local/scan/report
 fi
 
 reportdir=/usr/local/scan/report
+envelope=/usr/local/scan/report/mail
 
 #set sigdir
 sigdir=/usr/local/scan/lw-yara
@@ -454,11 +455,11 @@ while getopts ":ahltu:d:w:UARfi:" opt; do
 	m ) #mail-to function
 		echo -e "I will mail a thing!"
 		addr=$(grep Mailtoaddress /usr/local/scan/blazescand.conf | cut -d = -f2)
-		cat $OP1 | sendmail $addr
-		cat $OP2 | sendmail $addr
-		cat $OP3 | sendmail $addr
-		cat $OP4 | sendmail $addr
-		;;
+		echo -e "Subject: Blazescan hits report" > $envelope
+	        list >> $envelope
+		cat $envelope | sendmail $addr
+		rm $envelope	
+		exit 0;;
 
     \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
 	    exit 0;;

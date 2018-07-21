@@ -122,9 +122,13 @@ fi
 
 ##### moving scanner to proper dir to complete the install #####
 
-
-cp -av $PWD/blazescan /usr/local/scan/
-ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
+if [[ -e /usr/local/scan/blazescand.conf ]];then
+	cp -av $PWD/blazescan /usr/local/scan/
+	ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
+else
+	cp -av $PWD/blazescand.conf /usr/local/scan/
+	cp -av $PWD/blazescan /usr/local/scan/
+	ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
 
 echo -e "$green\nInstall complete\nGood Hunting\n $whi"
 
