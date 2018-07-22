@@ -1,6 +1,6 @@
 # blazescan
 
-Blazescan is a malware scanning tool, with built in support for cPanel servers, but will run on any linux based server. If you are using consider reporting back unknown malicious files so we can add signatures for malware going forward.
+Blazescan is a linux webserver malware scanning and incident response tool, with built in support for cPanel servers, but will run on any linux based server. If you are using consider reporting back unknown malicious files so we can add signatures for malware going forward.
 
 # install
 
