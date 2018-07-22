@@ -277,8 +277,8 @@ users(){
 	w
 	echo -e
 	header
-	echo -e "$red $header2 Last 10 ssh logins $header2 $whi\n"
-	last | head
+	echo -e "$red $header2 Last 10 logins $header2 $whi\n"
+	last -Faixw | head
 }
 
 
