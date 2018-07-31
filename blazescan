@@ -315,6 +315,7 @@ livecapture(){
 	else
 	timeout $TIME tcpdump -vvv -w $NP1
 	fi
+	echo -e "Packet capture stored in $NP1"
 }
 
 #############################  time stamps and other things ###################
