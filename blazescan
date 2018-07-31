@@ -317,7 +317,7 @@ livecapture(){
 	fi
 	echo -e "Packet capture stored in $NP1"
 	echo -e "\n\nIf you would like to review this data now run the following command"
-	echo -e "\ntcpdump -r $NP1"
+	echo -e "\ntcpdump -r $NP1\n"
 }
 
 #############################  time stamps and other things ###################
