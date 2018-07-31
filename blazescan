@@ -541,6 +541,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 		active
 		exit 0;;
 	N ) #network capture
+		livecapture
 		exit 0;;
 
 
