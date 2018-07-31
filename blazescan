@@ -283,7 +283,39 @@ users(){
 
 
 
+livecapture(){
+	PORT=""
+	HOST=""
+	NP1=/usr/local/scan/nettraffic$(date +%F-%H%M).pcap
+	echo -e "How long would you like to capture traffic? (measured in seconds)"
+	read TIME
 
+	echo -e "Would you like to set a host ip address?"
+	yesno; if [ $decision = 1 ];then
+	echo -e "Enter ip address"
+	read HOST
+	else
+	sleep 0
+	fi
+
+	echo -e "Would you like to set a port to watch?"
+	yesno; if [ $decision = 1 ];then
+        echo -e "Enter port number"
+        read PORT
+	else
+	sleep 0
+	fi
+
+	if [[ $(echo $HOST| wc -c) > 1 ]] && [[ $(echo $PORT|wc -c) > 1 ]];then
+	timeout $TIME tcpdump -vvv host $HOST and port $PORT -w $NP1
+	elif [[ $(echo $HOST| wc -c) > 1 ]]; then
+	timeout $TIME tcpdump -vvv host $HOST -w $NP1
+	elif [[ $(echo $PORT|wc -c) > 1 ]];then
+	timeout $TIME tcpdump -vvv port $PORT -w $NP1
+	else
+	timeout $TIME tcpdump -vvv -w $NP1
+	fi
+}
 
 #############################  time stamps and other things ###################
 
@@ -339,7 +371,7 @@ curl  -i -X PUT -T "${upload}" \
 ############################# flags for running ###############################
 
 
-while getopts ":ahltu:d:w:UARfi:mn" opt; do
+while getopts ":ahltu:d:w:UARfi:mnN" opt; do
   case ${opt} in
     h ) # process option h to display help menu
 	    helpmenu
@@ -506,6 +538,8 @@ while getopts ":ahltu:d:w:UARfi:mn" opt; do
 		users
 		listening
 		active
+		exit 0;;
+	N ) #network capture
 		exit 0;;
 
 
