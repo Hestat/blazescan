@@ -290,17 +290,17 @@ livecapture(){
 	echo -e "How long would you like to capture traffic? (measured in seconds)"
 	read TIME
 
-	echo -e "Would you like to set a host ip address?"
+	echo -e "\nWould you like to set a host ip address? [y/n]"
 	yesno; if [ $decision = 1 ];then
-	echo -e "Enter ip address"
+	echo -e "Enter ip address:"
 	read HOST
 	else
 	sleep 0
 	fi
 
-	echo -e "Would you like to set a port to watch?"
+	echo -e "\nWould you like to set a port to watch? [y/n]"
 	yesno; if [ $decision = 1 ];then
-        echo -e "Enter port number"
+        echo -e "Enter port number:"
         read PORT
 	else
 	sleep 0
