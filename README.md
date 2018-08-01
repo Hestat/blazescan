@@ -47,6 +47,10 @@ Blazescan is a malware scanning tool that uses clamav and custom malware databas
 	  -i provide a file to pull vital stats about the file
 	
 	  -m will email the list of hits from the last scan, set email in blazscand.conf Mailtoaddress
+
+	  -n will provide an overview of logged in users and network traffic
+
+	  -N will run a tcpdump for a specified time period and write the data to a file for later analysis
 	
 	  -U will check for updates, and allow you to perform any available updates
 	
