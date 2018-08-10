@@ -535,7 +535,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 			yesno; if [ $decision = 1 ]; then
 			vtkey=$(grep "#VTapikey=" /usr/local/scan/blazescand.conf| cut -d = -f2)
 			vthash=$(sha1sum $fileid| awk '{print$1}')
-			if [ $(cat $vthash) = 0 ]; then #no api key
+			if [ $(cat $vthash| wc -c) = 0 ]; then #no api key
 				echo -e "$yellow No Virustotal API key found, please add to /usr/local/scan/blazescand.conf $whi"
 			else
 				vtcheck
