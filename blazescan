@@ -534,6 +534,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 			vtkey=$(grep "#VTapikey=" /usr/local/scan/blazescand.conf| cut -d = -f2)
 			vthash=$(sha1sum $fileid| awk '{print$1}')
 			vtcheck
+			vtcheck >> $OPFILE
 			echo -e "\n"
 			else
 				echo -e
