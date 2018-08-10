@@ -530,7 +530,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 				echo -e
 			fi
 			echo -e "\n Would you like to check hash against Virustotal? [y/n]"
-			yesno; if [ $decision =1 ]; then
+			yesno; if [ $decision = 1 ]; then
 			vtkey=$(grep "#VTapikey=" /usr/local/scan/blazescand.conf| cut -d = -f2)
 			vthash=$(sha1sum $fileid)
 			vtcheck
