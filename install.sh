@@ -129,7 +129,7 @@ else
 fi
 
 if [[ -x $(which json_pp) ]]; then #json_pp install
-	echo -e "$green json_pp installedi\n $whi"
+	echo -e "$green json_pp installed\n $whi"
 else
 	echo -e "$yellow json_pp needs to be installed to run VirusTotal check"
 	echo -e " please run apt-get install json_pp or yum install json_pp to install package$whi"
