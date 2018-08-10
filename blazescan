@@ -353,7 +353,7 @@ filebasic(){
 }
 
 vtcheck(){
-	curl -s -X POST 'https://www.virustotal.com/vtapi/v2/file/report' --form apikey="$vtkey" --form resource="$vthash" | json_pp | tail -n7 | head -n6
+	curl -s -X POST 'https://www.virustotal.com/vtapi/v2/file/report' --form apikey="$vtkey" --form resource="$vthash" | json_pp | tail -n7 
 }
 
 ############################# reporting        ################################
