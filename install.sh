@@ -80,7 +80,7 @@ else #continue
 fi
 
 if [[ -x $(which clamscan 2> /dev/null) ]]; then #clamav installed
-	echo -e "$green\nFound ClamAV installed continuing\n$whi"
+	echo -e "$green\n Found ClamAV installed continuing\n$whi"
 else
 	echo -e "$redbold Please install ClamAV first, then run this script again\n $whi"
 	exit 0
@@ -146,5 +146,5 @@ else
 	ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
 fi
 
-echo -e "$green\nInstall complete\nGood Hunting\n $whi"
+echo -e "$green\n Install complete\n Good Hunting\n $whi"
 
