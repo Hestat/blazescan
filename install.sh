@@ -128,7 +128,7 @@ else
 	sleep 2
 fi
 
-if [[ -x $(which json_pp) ]]; the #json_pp install
+if [[ -x $(which json_pp) ]]; then #json_pp install
 	echo -e "$green json_pp installedi\n $whi"
 else
 	echo -e "$yellow json_pp needs to be installed to run VirusTotal check"
