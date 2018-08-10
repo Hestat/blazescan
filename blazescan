@@ -353,7 +353,7 @@ filebasic(){
 }
 
 vtcheck(){
-	echo -e "VirusTotal results"
+	echo -e "$yellow VirusTotal results $whi"
 	header
 	curl -s -X POST 'https://www.virustotal.com/vtapi/v2/file/report' --form apikey="$vtkey" --form resource="$vthash" | json_pp | tail -n7 
 }
@@ -541,7 +541,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 			else
 				echo -e
 			fi
-			echo -e "basic file info recorded in $OPFILE"
+			echo -e "$red basic file info recorded in $whi $OPFILE"
 			exit 0;;
 
 	
