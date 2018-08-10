@@ -128,6 +128,13 @@ else
 	sleep 2
 fi
 
+if [[ -x $(which json_pp) ]]; the #json_pp install
+	echo -e "$green json_pp installedi\n $whi"
+else
+	echo -e "$yellow json_pp needs to be installed to run VirusTotal check"
+	echo -e " please run apt-get install json_pp or yum install json_pp to install package$whi"
+	sleep 1
+fi
 ##### moving scanner to proper dir to complete the install #####
 
 if [[ -e /usr/local/scan/blazescand.conf ]];then
