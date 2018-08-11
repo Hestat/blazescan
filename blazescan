@@ -487,6 +487,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 		OP3=/usr/local/scan/$wpuser-$(date +%F-%H%M.txt)
 		echo -e "\n" | tee -a $OP3
 		wpclicheck
+		echo -e "\n" | tee -a $OP3
 		if [[ -x $(which maldet) ]];then
 			#echo -e "maldet detected, using maldet and lw-yara signatures"
 			maldetandyara
