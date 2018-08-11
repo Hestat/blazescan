@@ -349,6 +349,7 @@ filebasic(){
 			echo -e "File type:"
 			header
 			file $fileid
+			header
 			echo -e "File SHA1 hash:"
 			header
 			sha1sum $fileid
