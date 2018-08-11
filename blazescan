@@ -347,11 +347,11 @@ filebasic(){
 			header
 			stat $fileid
 			header
-			echo -e "File type:"
+			echo -e "\n\nFile type:"
 			header
 			file $fileid
 			header
-			echo -e "File SHA1 hash:"
+			echo -e "\n\nFile SHA1 hash:"
 			header
 			sha1sum $fileid
 			header
