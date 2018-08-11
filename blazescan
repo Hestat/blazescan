@@ -346,6 +346,7 @@ filebasic(){
 			echo -e "File Stats:"
 			header
 			stat $fileid
+			header
 			echo -e "File type:"
 			header
 			file $fileid
