@@ -343,13 +343,13 @@ forensic(){
 }
 
 filebasic(){
-			echo -e "File Stats"
+			echo -e "File Stats:"
 			header
 			stat $fileid
-			echo -e "\nFile type"
+			echo -e "File type:"
 			header
 			file $fileid
-			echo -e "\n File sha1 hash"
+			echo -e "File SHA1 hash:"
 			header
 			sha1sum $fileid
 			header
