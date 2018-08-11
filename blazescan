@@ -143,7 +143,7 @@ helpmenu(){
 	echo -e "  -w will run a scan on the directory of your choosing with wordpress checks included\n"
 	echo -e "  -f will run search for all files in the directory given and record ctime of all files\n"
 	echo -e "  -i provide a file to pull vital stats about the file\n"
-	echo -e "  -m will email the list of hits from the last scan, set email in blazescand.conf Mailtoaddress\n"
+	echo -e "  -m will email the list of hits from the last malware scan\n"
 	echo -e "  -n will provide an overview of logged in users and network traffic\n"
 	echo -e "  -N will run a tcpdump for a specified time period and write the data to a file for later analysis\n"
 	echo -e "  -U will check for updates, and allow you to perform any available updates\n"
