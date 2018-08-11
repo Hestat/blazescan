@@ -529,6 +529,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 	i ) #perform file analysis
 		fileid=$OPTARG
 		OPFILE=/usr/local/scan/filecheck-$(date +%F-%H%M.log)
+			echo -e "$yellow Collecting Statistics on file\n $whi"
 			filebasic >> $OPFILE
 			filebasic
 			echo -e "\n Would you like to view file strings? [y/n]"
