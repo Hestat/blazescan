@@ -246,6 +246,7 @@ clamddirectoryscan(){
 
 wpclicheck(){
 	#wpuser=$(find $wpdirect -name wp-config.php | xargs stat -t --format=%U)
+	echo -e "Wordpress path: $wpdirect"
 	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect" 2>&1 | tee -a $OP3
 	echo -e "\n Wordpress Administrative users, review to confirm no malicious users"
 	runuser -l $wpuser -s /bin/bash -c "wp user list --role=administrator --path=$wpdirect" 2>&1 | tee -a $OP3
