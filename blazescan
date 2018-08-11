@@ -558,7 +558,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 	
 	m ) #mail-to function
 		addr=$(grep Mailtoaddress /usr/local/scan/blazescand.conf | cut -d = -f2)
-		if [ $(echo $addr| wc -c = 1 ]; then
+		if [ $(echo $addr| wc -c) = 1 ]; then
 			echo -e "$yellow No Email address specified, please set up in /usr/local/scan/blazescand.conf $whi"
 		else
 			echo -e "Subject: Blazescan malware hits report" > $envelope
