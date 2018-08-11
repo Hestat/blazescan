@@ -464,8 +464,9 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 	l ) #list results
 		list
 		if [[ $(grep "Warning:" $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | wc -l) -ge "1"  ]]; then
-			echo -e
+			echo -e "Wordpress checks"
 			wlist
+			echo -e
 		else
 			exit 0
 		fi
