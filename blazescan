@@ -353,9 +353,10 @@ filebasic(){
 }
 
 vtcheck(){
-	echo -e "$yellow VirusTotal results $whi"
+	echo -e "\n VirusTotal results"
 	header
 	curl -s -X POST 'https://www.virustotal.com/vtapi/v2/file/report' --form apikey="$vtkey" --form resource="$vthash" | json_pp | egrep "permalink|scan_date|verbose_msg|positives|total" 
+	header
 }
 
 ############################# reporting        ################################
