@@ -332,6 +332,14 @@ list(){
 	fi
 }
 
+
+wlist(){
+	if [[ $(grep "Warning:" $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | wc -l) -ge "1"  ]]; then
+		grep "Warning:" $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}')
+	else echo -e " Wordpress core files match\n"
+	fi
+}
+
 timestamps(){
 	if [[ $(grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | xargs stat -t --format=%z,%n 2> /dev/null | wc -l) -ge "1" ]]; then 
 		grep UNOFFICIAL $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | cut -d : -f1 | xargs stat -t --format=%z,%n
@@ -453,7 +461,13 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 		fi
 		exit 0;;
 
-	l ) list
+	l ) #list results
+		list
+		if [[ $(grep "Warning:" $(find /usr/local/scan/ -maxdepth 1 -name '*.txt' -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 |awk '{print$4}') | wc -l) -ge "1"  ]]; then
+		wlist
+		else
+			exit 0
+		fi
 		exit 0;;
 	t ) timestamps
 		exit 0;;
