@@ -249,7 +249,7 @@ wpclicheck(){
 	echo -e " Wordpress path: $wpdirect" | tee -a $OP3
 	runuser -l  $wpuser -s /bin/bash -c "wp checksum core --path=$wpdirect" 2>&1 | tee -a $OP3
 	echo -e "\n Wordpress Administrative users, review to confirm no malicious users" | tee -a $OP3
-	runuser -l $wpuser -s /bin/bash -c "wp user list --role=administrator --path=$wpdirect" 2>&1 | tee -a $OP3
+	runuser -l $wpuser -s /bin/bash -c "wp user list --role=administrator --path=$wpdirect --format=csv" 2>&1 | tee -a $OP3
 	echo -e "\n"
 }
 
