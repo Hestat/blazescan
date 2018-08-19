@@ -602,7 +602,7 @@ while getopts ":ahltu:d:w:UARfi:mnN" opt; do
 		exit 0;;
 
 
-    \? ) echo "Usage: cmd [-h help] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits]"
+    \? ) echo "Usage: cmd [-d directory path to scan] [-w path to wordpress homedir to scan] [-u cpanel user] [ -a scan all cpanel account] [-l list last scan results] [-t list create time of hits] [ -h Use to get a full list of the features and flags]"
 	    exit 0;;
   esac
 done
