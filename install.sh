@@ -140,6 +140,8 @@ fi
 if [[ -e /usr/local/scan/blazescand.conf ]];then
 	cp -av $PWD/blazescan /usr/local/scan/
 	ln -s /usr/local/scan/blazescan /usr/local/bin/blazescan 2> /dev/null
+	cp -av $PWD/blazescan-man /usr/local/man/man1/blazescan.1
+	gzip /usr/local/man/man1/blazescan.1
 else
 	cp -av $PWD/blazescand.conf /usr/local/scan/
 	cp -av $PWD/blazescan /usr/local/scan/
