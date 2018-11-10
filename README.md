@@ -18,6 +18,10 @@ Additionally will ask if you want to install Maldet and WPCLI to take advantage 
 
 # using
 
+See demo use here:
+
+https://laskowski-tech.com/2018/11/10/blazescan-tutorial/
+
 simply start with 
 
  ```blazescan```
